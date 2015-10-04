@@ -6,6 +6,6 @@ Authors@R: person("Jeroen", "Ooms", ,"jeroen.ooms@stat.ucla.edu", role = c("aut"
 Description: Bindings to libsodium: a modern, easy-to-use software library for encryption,
     decryption, signatures, password hashing and more.
 License: MIT + file LICENSE
-URL: http://github.com/jeroenooms/sodium https://download.libsodium.org/doc/
-BugReports: http://github.com/jeroenooms/sodium/issues
+URL: https://github.com/jeroenooms/sodium https://download.libsodium.org/doc/
+BugReports: https://github.com/jeroenooms/sodium/issues
 SystemRequirements: libsodium
