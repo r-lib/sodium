@@ -48,3 +48,4 @@ random <- function(n = 1L){
   stopifnot(is.numeric(n))
   .Call(R_randombytes_buf, as.integer(n))
 }
+
