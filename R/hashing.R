@@ -29,14 +29,17 @@
 #' sha256(msg)
 #' sha512(msg)
 #'
-#' # HMAC hash
-#' key <- rand_bytes(32)
-#' hash(msg, key = key)
-#' sha256(msg, key = key)
+#' # Generate keys from passphrase
+#' passphrase <- charToRaw("This is super secret")
+#' key <- hash(passphrase)
+#' shortkey <- hash(passphrase, 16)
+#' longkey <- hash(passphrase, 64)
 #'
-#' # Short hash
-#' shortkey <- rand_bytes(16)
+#' # HMAC (hashing with key)
+#' hash(msg, key = key)
 #' shorthash(msg, shortkey)
+#' sha256(msg, key = key)
+#' sha512(msg, key = longkey)
 hash <- function(buf, size = 32, key = NULL){
   stopifnot(is.raw(buf))
   stopifnot(is.null(key) || is.raw(key))
