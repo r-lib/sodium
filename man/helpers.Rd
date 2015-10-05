@@ -4,14 +4,17 @@
 \alias{bin2hex}
 \alias{helpers}
 \alias{hex2bin}
-\alias{random}
+\alias{rand_bytes}
+\alias{rand_num}
 \title{Sodium helper functions}
 \usage{
 bin2hex(bin)
 
 hex2bin(hex, ignore = ":")
 
-random(n = 1L)
+rand_bytes(n = 1)
+
+rand_num(n = 1)
 }
 \arguments{
 \item{bin}{raw vector with binary data to convert to hex string}
@@ -20,7 +23,7 @@ random(n = 1L)
 
 \item{ignore}{a string with characters to ignore from \code{hex}. See example.}
 
-\item{n}{number of random bytes to generate}
+\item{n}{number of random bytes or numbers to generate}
 }
 \description{
 The functions \code{bin2hex} and \code{hex2bin} convert between binary (raw)
