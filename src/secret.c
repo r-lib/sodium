@@ -10,16 +10,11 @@ SEXP R_crypto_secret_encrypt(SEXP message, SEXP key, SEXP nonce){
 
   int mlen = LENGTH(message);
   int clen = mlen + crypto_secretbox_MACBYTES;
-  unsigned char *c = sodium_malloc(clen);
-
-  if(crypto_secretbox_easy(c, RAW(message), mlen, RAW(nonce), RAW(key))){
-    sodium_free(c);
-    Rf_error("Failed to encrypt");
-  }
-
   SEXP res = allocVector(RAWSXP, clen);
-  memcpy(RAW(res), c, clen);
-  sodium_free(c);
+
+  if(crypto_secretbox_easy(RAW(res), RAW(message), mlen, RAW(nonce), RAW(key)))
+    Rf_error("Failed to encrypt");
+
   return res;
 }
 
@@ -31,15 +26,32 @@ SEXP R_crypto_secret_decrypt(SEXP cipher, SEXP key, SEXP nonce){
 
   int clen = LENGTH(cipher);
   int mlen = clen - crypto_secretbox_MACBYTES;
-  unsigned char *m = sodium_malloc(mlen);
-
-  if(crypto_secretbox_open_easy(m, RAW(cipher), clen, RAW(nonce), RAW(key))){
-    sodium_free(m);
-    Rf_error("Failed to decrypt");
-  }
-
   SEXP res = allocVector(RAWSXP, mlen);
-  memcpy(RAW(res), m, mlen);
-  sodium_free(m);
+
+  if(crypto_secretbox_open_easy(RAW(res), RAW(cipher), clen, RAW(nonce), RAW(key)))
+    Rf_error("Failed to decrypt");
+
   return res;
+}
+
+SEXP R_crypto_secret_auth(SEXP message, SEXP key){
+  if(LENGTH(key) != crypto_auth_KEYBYTES)
+    Rf_error("Invalid key. Key must be exactly %d bytes", crypto_auth_KEYBYTES);
+
+  SEXP res = allocVector(RAWSXP, crypto_auth_BYTES);
+
+  if(crypto_auth(RAW(res), RAW(message), LENGTH(message), RAW(key)))
+    Rf_error("Authentication failed.");
+
+  return res;
+}
+
+SEXP R_crypto_secret_verify(SEXP message, SEXP key, SEXP tag){
+  if(LENGTH(key) != crypto_auth_KEYBYTES)
+    Rf_error("Invalid key. Key must be exactly %d bytes", crypto_auth_KEYBYTES);
+  if(LENGTH(tag) != crypto_auth_BYTES)
+    Rf_error("Invalid tag. Key must be exactly %d bytes", crypto_auth_BYTES);
+
+  int res = crypto_auth_verify(RAW(tag), RAW(message), LENGTH(message), RAW(key));
+  return ScalarLogical(res == 0);
 }
