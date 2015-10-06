@@ -10,7 +10,7 @@
 \usage{
 hash(buf, key = NULL, size = 32)
 
-scrypt(buf, salt = raw(32), length = 32)
+scrypt(buf, salt = raw(32), size = 32)
 
 shorthash(buf, key)
 
@@ -24,6 +24,8 @@ sha256(buf, key = NULL)
 \item{key}{raw vector with key for HMAC hashing. Optional, except for in \code{shorthash}.}
 
 \item{size}{the size of the output hash. Must be between 16 and 64, recommended is 32.}
+
+\item{salt}{non-confidential random data to seed the algorithm}
 }
 \description{
 Functions to calculate cryptographic hash of a message, with optionally a key for
@@ -55,12 +57,13 @@ msg <- serialize(iris, NULL)
 hash(msg)
 sha256(msg)
 sha512(msg)
+scrypt(msg)
 
 # Generate keys from passphrase
 passphrase <- charToRaw("This is super secret")
 key <- hash(passphrase)
-shortkey <- hash(passphrase, 16)
-longkey <- hash(passphrase, 64)
+shortkey <- hash(passphrase, size = 16)
+longkey <- hash(passphrase, size = 64)
 
 # HMAC (hashing with key)
 hash(msg, key = key)

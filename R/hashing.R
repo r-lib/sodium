@@ -22,8 +22,6 @@
 #' it is 64 bytes. For \code{hash} the key size can be any value between 16 and 62,
 #' recommended is at least 32.
 #'
-#'
-#'
 #' @rdname hash
 #' @name hash
 #' @references \url{https://download.libsodium.org/doc/hashing/generic_hashing.html}
@@ -36,12 +34,13 @@
 #' hash(msg)
 #' sha256(msg)
 #' sha512(msg)
+#' scrypt(msg)
 #'
 #' # Generate keys from passphrase
 #' passphrase <- charToRaw("This is super secret")
 #' key <- hash(passphrase)
-#' shortkey <- hash(passphrase, 16)
-#' longkey <- hash(passphrase, 64)
+#' shortkey <- hash(passphrase, size = 16)
+#' longkey <- hash(passphrase, size = 64)
 #'
 #' # HMAC (hashing with key)
 #' hash(msg, key = key)
@@ -56,13 +55,13 @@ hash <- function(buf, key = NULL, size = 32){
 
 #' @export
 #' @rdname hash
+#' @param salt non-confidential random data to seed the algorithm
 #' @useDynLib sodium R_pwhash
-scrypt <- function(buf, salt = raw(32), length = 32){
+scrypt <- function(buf, salt = raw(32), size = 32){
   stopifnot(is.raw(buf))
   stopifnot(is.raw(salt))
-  stopifnot(is.numeric(length))
-  out <- .Call(R_pwhash, buf, salt, length)
-  structure(out, salt = salt)
+  stopifnot(is.numeric(size))
+  .Call(R_pwhash, buf, salt, size)
 }
 
 #' @export

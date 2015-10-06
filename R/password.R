@@ -21,7 +21,7 @@
 #' # Hash is what you store in the database
 #' hash <- password_store(password)
 #'
-#' # Verify the password when the user logs in
+#' # To verify the password when the user logs in
 #' stopifnot(password_verify(hash, password))
 password_store <- function(password){
   .Call(R_password_hash, password)
