@@ -24,7 +24,7 @@ on a shared secret without ever exchanging the secret itself. Sodium implements
 \href{https://en.wikipedia.org/wiki/Curve25519}{Curve25519}, a state-of-the-art Diffie-Hellman
 function suitable for a wide variety of applications.
 
-The method conists of two steps (see examples). In the fist step, both parties generate a
+The method conists of two steps (see examples).First, both parties generate a
 random private key and derive the corresponding public key using \link{diffie_pubkey}.
 These public keys are not confidential and can be exchanged over an insecure channel.
 After the public keys are exchanged, both parties will be able to calculate the shared secret
