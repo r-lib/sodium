@@ -2,10 +2,17 @@
 #'
 #' Generate deterministic streams of random data based off a key and nonce.
 #'
-#' Random streams form the basis for most cryptographic methods. You usually don't need
-#' to call these methods directly.
+#' You usually don't need to call these methods directly. For general purpose encryption
+#' use the high-level functions \link{secret_encrypt} and \link{secret_decrypt}.
 #'
-#' Each stream requires a \code{key} and a \code{nonce}. Both are required to re-generate
+#' Random streams form the basis for most cryptographic methods. Based a shared secret
+#' (the key) we generate a predictable random data stream of equal length as the message
+#' we need to encrypt. Then we \link{xor} the message data with this random stream,
+#' which effectively inverts each byte in the message with probabiliy 0.5. The message
+#' can be decrypted by re-generating exactly the same random data stream and \link{xor}'ing
+#' it back. See the examples.
+#'
+#' Each stream generator requires a \code{key} and a \code{nonce}. Both are required to re-generate
 #' the same stream for decryption. The key forms the shared secret and should only known to
 #' the trusted parties. The \code{nonce} is not secret and should be stored or sent along
 #' with the ciphertext. The purpose of the \code{nonce} is to make a random stream unique
@@ -24,9 +31,9 @@
 #' myfile <- file.path(R.home(), "COPYING")
 #' message <- readBin(myfile, raw(), file.info(myfile)$size)
 #' passwd <- charToRaw("My secret passphrase")
-#' key <- hash(passwd)
 #'
 #' # Encrypt:
+#' key <- hash(passwd)
 #' nonce8 <- rand_bytes(8)
 #' stream <- chacha(length(message), key, nonce8)
 #' ciphertext <- base::xor(stream, message)
