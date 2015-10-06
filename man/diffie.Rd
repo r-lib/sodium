@@ -17,19 +17,19 @@ other to jointly establish a shared secret key over an insecure channel. This ke
 used to encrypt subsequent communications using a symmetric key cipher.
 }
 \details{
-Encryption methods as implemented in \link{secret_encrypt} require that both parties know a
-shared secret key to encode/decode ciphertext. But often we wish to establish a secure channel
-with a party we have no prior relationship to. Diffie-hellman is a method for jointly agreeing
-on a shared secret without ever exchanging the secret itself. Sodium implements
+Encryption methods as implemented in \link{secret_encrypt} require that parties have a shared
+shared secret key. But often we wish to establish a secure channel with a party we have no prior
+relationship with. Diffie-hellman is a method for jointly agreeing on a shared secret without
+ever exchanging the secret itself. Sodium implements
 \href{https://en.wikipedia.org/wiki/Curve25519}{Curve25519}, a state-of-the-art Diffie-Hellman
 function suitable for a wide variety of applications.
 
-The method conists of two steps (see examples).First, both parties generate a
+The method conists of two steps (see examples). First, both parties generate a
 random private key and derive the corresponding public key using \link{diffie_pubkey}.
 These public keys are not confidential and can be exchanged over an insecure channel.
-After the public keys are exchanged, both parties will be able to calculate the shared secret
-by combining his/her own private key with the other person's public key in the \link{diffie_secret}
-function.
+After the public keys are exchanged, both parties will be able to calculate the (same) shared
+secret by combining his/her own private key with the other person's public key using
+\link{diffie_secret}.
 
 After the shared secret has been established, the private and public keys are disposed, and
 parties can start encrypting communications based on the shared secret using e.g. \link{secret_encrypt}.
