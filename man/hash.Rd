@@ -2,12 +2,15 @@
 % Please edit documentation in R/hashing.R
 \name{hash}
 \alias{hash}
+\alias{scrypt}
 \alias{sha256}
 \alias{sha512}
 \alias{shorthash}
 \title{Hash functions}
 \usage{
-hash(buf, size = 32, key = NULL)
+hash(buf, key = NULL, size = 32)
+
+scrypt(buf, salt = raw(32), length = 32)
 
 shorthash(buf, key)
 
@@ -18,27 +21,33 @@ sha256(buf, key = NULL)
 \arguments{
 \item{buf}{raw vector with data to be hashed}
 
-\item{size}{the size of the output hash. Must be between 16 and 64, recommended is 32.}
-
 \item{key}{raw vector with key for HMAC hashing. Optional, except for in \code{shorthash}.}
+
+\item{size}{the size of the output hash. Must be between 16 and 64, recommended is 32.}
 }
 \description{
 Functions to calculate cryptographic hash of a message, with optionally a key for
-HMAC applications
+HMAC applications. For storing passwords, use \link{password_store} instead.
 }
 \details{
-The generic \code{hash} function is recommended. It uses dynamic length
+The generic \code{hash} function is recommended most most applications. It uses
+dynamic length
 \href{https://download.libsodium.org/doc/hashing/generic_hashing.html}{BLAKE2b}
 where output size can be any value between 16 bytes (128bit) and 64 bytes (512bit).
-We can use each function as HMAC by specifying a \code{key}. They key size for
-\code{shorthash} is 16 bytes, for \code{sha256} it is 32 bytes and for \code{sha512}
-it is 64 bytes. For \code{hash} the key size can be any value between 16 and 62,
-recommended is at least 32.
+
+The \link{scrypt} hash function is designed to be CPU and memory expensive to protect
+against brute force attacks. This algorithm is also used by the \link{password_store}
+function.
 
 The \code{shorthash} function is a special 8 byte (64 bit) hash based on
 \href{https://download.libsodium.org/doc/hashing/short-input_hashing.html}{SipHash-2-4}.
 The output of this function is only 64 bits (8 bytes). It is useful for in e.g.
 Hash tables, but it should not be considered collision-resistant.
+
+Hash functions can be used for HMAC by specifying a secret \code{key}. They key size
+for \code{shorthash} is 16 bytes, for \code{sha256} it is 32 bytes and for \code{sha512}
+it is 64 bytes. For \code{hash} the key size can be any value between 16 and 62,
+recommended is at least 32.
 }
 \examples{
 # Basic hashing

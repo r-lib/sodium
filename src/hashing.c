@@ -70,3 +70,16 @@ SEXP R_crypto_shorthash(SEXP buf, SEXP key){
     Rf_error("Failed to hash");
   return res;
 }
+
+/* Password hashing */
+
+SEXP R_pwhash(SEXP buf, SEXP salt, SEXP size){
+  int outlen = asInteger(size);
+  if(LENGTH(salt) != crypto_pwhash_scryptsalsa208sha256_SALTBYTES)
+    Rf_error("Invalid salt, must be exactly %d bytes", crypto_pwhash_scryptsalsa208sha256_SALTBYTES);
+  SEXP res = allocVector(RAWSXP, outlen);
+  if(crypto_pwhash_scryptsalsa208sha256(RAW(res), outlen, (char*) RAW(buf), LENGTH(buf), RAW(salt),
+  crypto_pwhash_scryptsalsa208sha256_OPSLIMIT_INTERACTIVE, crypto_pwhash_scryptsalsa208sha256_MEMLIMIT_INTERACTIVE))
+    Rf_error("pwhash failed");
+  return res;
+}

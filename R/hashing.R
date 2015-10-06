@@ -1,20 +1,28 @@
 #' Hash functions
 #'
 #' Functions to calculate cryptographic hash of a message, with optionally a key for
-#' HMAC applications
+#' HMAC applications. For storing passwords, use \link{password_store} instead.
 #'
-#' The generic \code{hash} function is recommended. It uses dynamic length
+#' The generic \code{hash} function is recommended most most applications. It uses
+#' dynamic length
 #' \href{https://download.libsodium.org/doc/hashing/generic_hashing.html}{BLAKE2b}
 #' where output size can be any value between 16 bytes (128bit) and 64 bytes (512bit).
-#' We can use each function as HMAC by specifying a \code{key}. They key size for
-#' \code{shorthash} is 16 bytes, for \code{sha256} it is 32 bytes and for \code{sha512}
-#' it is 64 bytes. For \code{hash} the key size can be any value between 16 and 62,
-#' recommended is at least 32.
+#'
+#' The \link{scrypt} hash function is designed to be CPU and memory expensive to protect
+#' against brute force attacks. This algorithm is also used by the \link{password_store}
+#' function.
 #'
 #' The \code{shorthash} function is a special 8 byte (64 bit) hash based on
 #' \href{https://download.libsodium.org/doc/hashing/short-input_hashing.html}{SipHash-2-4}.
 #' The output of this function is only 64 bits (8 bytes). It is useful for in e.g.
 #' Hash tables, but it should not be considered collision-resistant.
+#'
+#' Hash functions can be used for HMAC by specifying a secret \code{key}. They key size
+#' for \code{shorthash} is 16 bytes, for \code{sha256} it is 32 bytes and for \code{sha512}
+#' it is 64 bytes. For \code{hash} the key size can be any value between 16 and 62,
+#' recommended is at least 32.
+#'
+#'
 #'
 #' @rdname hash
 #' @name hash
@@ -40,10 +48,21 @@
 #' shorthash(msg, shortkey)
 #' sha256(msg, key = key)
 #' sha512(msg, key = longkey)
-hash <- function(buf, size = 32, key = NULL){
+hash <- function(buf, key = NULL, size = 32){
   stopifnot(is.raw(buf))
   stopifnot(is.null(key) || is.raw(key))
   .Call(R_crypto_generichash, buf, size, key)
+}
+
+#' @export
+#' @rdname hash
+#' @useDynLib sodium R_pwhash
+scrypt <- function(buf, salt = raw(32), length = 32){
+  stopifnot(is.raw(buf))
+  stopifnot(is.raw(salt))
+  stopifnot(is.numeric(length))
+  out <- .Call(R_pwhash, buf, salt, length)
+  structure(out, salt = salt)
 }
 
 #' @export
