@@ -57,3 +57,9 @@ rand_num <- function(n = 1){
   as.numeric(x %*% 256^-(1:8))
 }
 
+#' @useDynLib sodium R_xor
+xor <- function(x, y){
+  stopifnot(is.raw(x))
+  stopifnot(is.raw(y))
+  .Call(R_xor, x, y)
+}
