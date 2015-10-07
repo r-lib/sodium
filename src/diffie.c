@@ -1,7 +1,7 @@
 #include <Rinternals.h>
 #include <sodium.h>
 
-SEXP R_diffie_secret(SEXP key, SEXP pubkey){
+SEXP R_diffie_hellman(SEXP key, SEXP pubkey){
   if(LENGTH(key) != crypto_scalarmult_SCALARBYTES)
     Rf_error("Invalid key, must be exactly %d bytes", crypto_scalarmult_SCALARBYTES);
   if(LENGTH(pubkey) != crypto_scalarmult_BYTES)

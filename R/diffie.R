@@ -26,7 +26,7 @@
 #' @rdname diffie
 #' @name Diffie-Hellman
 #' @aliases diffie
-#' @useDynLib sodium R_diffie_secret
+#' @useDynLib sodium R_diffie_hellman
 #' @references \url{http://doc.libsodium.org/advanced/scalar_multiplication.html}
 #' @examples # Bob generates keypair
 #' bob_key <- keygen()
@@ -37,11 +37,11 @@
 #' alice_pubkey <- pubkey(alice_key)
 #'
 #' # After Bob and Alice exchange pubkey they can both derive the secret
-#' alice_secret <- diffie_secret(alice_key, bob_pubkey)
-#' bob_secret <- diffie_secret(bob_key, alice_pubkey)
+#' alice_secret <- diffie_hellman(alice_key, bob_pubkey)
+#' bob_secret <- diffie_hellman(bob_key, alice_pubkey)
 #' stopifnot(identical(alice_secret, bob_secret))
-diffie_secret <- function(key, pubkey){
+diffie_hellman <- function(key, pubkey){
   stopifnot(is.raw(key))
   stopifnot(is.raw(pubkey))
-  .Call(R_diffie_secret, key, pubkey)
+  .Call(R_diffie_hellman, key, pubkey)
 }

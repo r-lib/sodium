@@ -3,10 +3,10 @@
 \name{Diffie-Hellman}
 \alias{Diffie-Hellman}
 \alias{diffie}
-\alias{diffie_secret}
+\alias{diffie_hellman}
 \title{Diffie-Hellman}
 \usage{
-diffie_secret(key, pubkey)
+diffie_hellman(key, pubkey)
 }
 \description{
 The Diffie-Hellman key exchange method allows two parties that have no prior knowledge of each
@@ -42,8 +42,8 @@ alice_key <- keygen()
 alice_pubkey <- pubkey(alice_key)
 
 # After Bob and Alice exchange pubkey they can both derive the secret
-alice_secret <- diffie_secret(alice_key, bob_pubkey)
-bob_secret <- diffie_secret(bob_key, alice_pubkey)
+alice_secret <- diffie_hellman(alice_key, bob_pubkey)
+bob_secret <- diffie_hellman(bob_key, alice_pubkey)
 stopifnot(identical(alice_secret, bob_secret))
 }
 \references{
