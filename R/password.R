@@ -1,4 +1,4 @@
-#' Password storage
+#' Password Storage
 #'
 #' Wrapper that implements best practices for storing passwords based on scrypt with
 #' a random salt.

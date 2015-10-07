@@ -7,7 +7,7 @@
 \alias{stream}
 \alias{streaming}
 \alias{xsalsa}
-\title{Stream ciphers}
+\title{Stream Ciphers}
 \usage{
 chacha(n, key, nonce)
 
@@ -25,7 +25,7 @@ aes(n, key, nonce)
 \item{nonce}{non-confidental random data to make the stream unique}
 }
 \description{
-Generate deterministic streams of random data based off a key and nonce.
+Generate deterministic streams of random data based off a secret key and random nonce.
 }
 \details{
 You usually don't need to call these methods directly. For general purpose encryption

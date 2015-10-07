@@ -5,7 +5,7 @@
 \alias{password}
 \alias{password_store}
 \alias{password_verify}
-\title{Password storage}
+\title{Password Storage}
 \usage{
 password_store(password)
 

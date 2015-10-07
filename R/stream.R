@@ -1,6 +1,6 @@
-#' Stream ciphers
+#' Stream Ciphers
 #'
-#' Generate deterministic streams of random data based off a key and nonce.
+#' Generate deterministic streams of random data based off a secret key and random nonce.
 #'
 #' You usually don't need to call these methods directly. For general purpose encryption
 #' use the high-level functions \link{secret_encrypt} and \link{secret_decrypt}.

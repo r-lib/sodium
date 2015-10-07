@@ -11,45 +11,35 @@
 #' \href{https://en.wikipedia.org/wiki/Curve25519}{Curve25519}, a state-of-the-art Diffie-Hellman
 #' function suitable for a wide variety of applications.
 #'
-#' The method conists of two steps (see examples). First, both parties generate a
-#' random private key and derive the corresponding public key using \link{diffie_pubkey}.
-#' These public keys are not confidential and can be exchanged over an insecure channel.
-#' After the public keys are exchanged, both parties will be able to calculate the (same) shared
-#' secret by combining his/her own private key with the other person's public key using
-#' \link{diffie_secret}.
+#' The method conists of two steps (see examples). First, both parties generate a random private
+#' key and derive the corresponding public key using \link{pubkey}. These public keys are not
+#' confidential and can be exchanged over an insecure channel. After the public keys are exchanged,
+#' both parties will be able to calculate the (same) shared secret by combining his/her own private
+#' key with the other person's public key using \link{diffie_secret}.
 #'
 #' After the shared secret has been established, the private and public keys are disposed, and
 #' parties can start encrypting communications based on the shared secret using e.g. \link{secret_encrypt}.
-#' Because the shared secret cannot be derived using only the public keys, the process is safe
+#' Because the shared secret cannot be calculated using only the public keys, the process is safe
 #' from eavesdroppers.
 #'
 #' @export
 #' @rdname diffie
 #' @name Diffie-Hellman
 #' @aliases diffie
-#' @useDynLib sodium R_diffie_pubkey
+#' @useDynLib sodium R_diffie_secret
 #' @references \url{http://doc.libsodium.org/advanced/scalar_multiplication.html}
 #' @examples # Bob generates keypair
-#' bob_key <- rand_bytes(32)
-#' bob_pubkey <- diffie_pubkey(bob_key)
+#' bob_key <- keygen()
+#' bob_pubkey <- pubkey(bob_key)
 #'
 #' # Alice generates keypair
-#' alice_key <- rand_bytes(32)
-#' alice_pubkey <- diffie_pubkey(alice_key)
+#' alice_key <- keygen()
+#' alice_pubkey <- pubkey(alice_key)
 #'
 #' # After Bob and Alice exchange pubkey they can both derive the secret
 #' alice_secret <- diffie_secret(alice_key, bob_pubkey)
 #' bob_secret <- diffie_secret(bob_key, alice_pubkey)
 #' stopifnot(identical(alice_secret, bob_secret))
-#'
-diffie_pubkey <- function(key){
-  stopifnot(is.raw(key))
-  .Call(R_diffie_pubkey, key)
-}
-
-#' @export
-#' @rdname diffie
-#' @useDynLib sodium R_diffie_secret
 diffie_secret <- function(key, pubkey){
   stopifnot(is.raw(key))
   stopifnot(is.raw(pubkey))

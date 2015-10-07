@@ -1,4 +1,4 @@
-#' Hash functions
+#' Hash Functions
 #'
 #' Functions to calculate cryptographic hash of a message, with optionally a key for
 #' HMAC applications. For storing passwords, use \link{password_store} instead.

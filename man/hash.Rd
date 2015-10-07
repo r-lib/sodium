@@ -7,7 +7,7 @@
 \alias{sha256}
 \alias{sha512}
 \alias{shorthash}
-\title{Hash functions}
+\title{Hash Functions}
 \usage{
 hash(buf, key = NULL, size = 32)
 
