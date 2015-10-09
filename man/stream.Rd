@@ -18,19 +18,19 @@ xsalsa20(n, key, nonce)
 aes128(n, key, nonce)
 }
 \arguments{
-\item{n}{integer, how many random bytes to generate}
+\item{n}{integer how many bytes to generate}
 
 \item{key}{raw vector of size 32 with secret data}
 
-\item{nonce}{non-confidental random data to make the stream unique}
+\item{nonce}{non-secret unique data to randomize the cipher}
 }
 \description{
 Generate deterministic streams of random data based off a secret key and random nonce.
 }
 \details{
 You usually don't need to call these methods directly. For local encryption
-use the high-level functions \link{secret_encrypt} and \link{secret_decrypt}.
-For secure communication use \link{secure_send} and \link{secure_recv}.
+use \link{data_encrypt}. For secure communication use \link{simple_encrypt} or
+\link{auth_encrypt}.
 
 Random streams form the basis for most cryptographic methods. Based a shared secret
 (the key) we generate a predictable random data stream of equal length as the message
@@ -54,7 +54,7 @@ passwd <- charToRaw("My secret passphrase")
 
 # Encrypt:
 key <- hash(passwd)
-nonce8 <- rand_bytes(8)
+nonce8 <- random(8)
 stream <- chacha20(length(message), key, nonce8)
 ciphertext <- base::xor(stream, message)
 
@@ -65,9 +65,9 @@ stopifnot(identical(out, message))
 
 # Other stream ciphers
 stream <- salsa20(10000, key, nonce8)
-stream <- xsalsa20(10000, key, rand_bytes(24))
+stream <- xsalsa20(10000, key, random(24))
 
 shortkey <- hash(passwd, size = 16)
-stream <- aes128(10000, shortkey, rand_bytes(16))
+stream <- aes128(10000, shortkey, random(16))
 }
 

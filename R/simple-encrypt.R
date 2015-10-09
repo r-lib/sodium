@@ -8,7 +8,7 @@
 #'
 #' While the recipient can verify the integrity of the message, it cannot verify the
 #' identity of the sender. For sending authenticated encrypted messages, use
-#' \link{secure_send} and \link{secure_recv}.
+#' \link{auth_encrypt} and \link{auth_decrypt}.
 #'
 #' @export
 #' @rdname simple

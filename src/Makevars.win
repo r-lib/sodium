@@ -1,2 +1,7 @@
 PKG_CPPFLAGS= -I../windows/sodium-1.0.3/include
 PKG_LIBS= -L../windows/sodium-1.0.3/lib${R_ARCH} -lsodium
+
+all: winlibs
+
+winlibs:
+	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R"

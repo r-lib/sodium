@@ -27,8 +27,8 @@
 #' @aliases hashing
 #' @references \url{https://download.libsodium.org/doc/hashing/generic_hashing.html}
 #' @useDynLib sodium R_crypto_generichash
-#' @param buf raw vector with data to be hashed
-#' @param key raw vector with key for HMAC hashing. Optional, except for in \code{shorthash}.
+#' @param buf data to be hashed
+#' @param key key for HMAC hashing. Optional, except for in \code{shorthash}.
 #' @export
 #' @examples # Basic hashing
 #' msg <- serialize(iris, NULL)
@@ -88,7 +88,7 @@ sha512 <- function(buf, key = NULL){
 }
 
 #' @rdname hash
-#' @param size the size of the output hash. Must be between 16 and 64, recommended is 32.
+#' @param size length of the output hash. Must be between 16 and 64 (recommended is 32)
 #' @useDynLib sodium R_sha256 R_auth_sha256
 #' @export
 sha256 <- function(buf, key = NULL){

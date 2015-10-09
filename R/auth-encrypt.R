@@ -49,7 +49,7 @@
 #' @param key your own private key
 #' @param pubkey other person's public key
 #' @param nonce non-secret unique data to randomize the cipher
-auth_encrypt <- function(msg, key, pubkey, nonce = rand_bytes(24)){
+auth_encrypt <- function(msg, key, pubkey, nonce = random(24)){
   stopifnot(is.raw(msg))
   stopifnot(is.raw(key))
   stopifnot(is.raw(pubkey))
@@ -61,8 +61,8 @@ auth_encrypt <- function(msg, key, pubkey, nonce = rand_bytes(24)){
 #' @export
 #' @rdname messaging
 #' @useDynLib sodium R_secure_recv
-auth_decrypt <- function(bin, key, pubkey, nonce = attr(cipher, "nonce")){
-  stopifnot(is.raw(msg))
+auth_decrypt <- function(bin, key, pubkey, nonce = attr(bin, "nonce")){
+  stopifnot(is.raw(bin))
   stopifnot(is.raw(key))
   stopifnot(is.raw(pubkey))
   stopifnot(is.raw(nonce))

@@ -44,17 +44,9 @@ hex2bin <- function(hex, ignore = ":"){
 #' @export
 #' @rdname helpers
 #' @param n number of random bytes or numbers to generate
-rand_bytes <- function(n = 1){
+random <- function(n = 1){
   stopifnot(is.numeric(n))
   .Call(R_randombytes_buf, as.integer(n))
-}
-
-#' @rdname helpers
-#' @export
-rand_num <- function(n = 1){
-  # 64 bit double requires 8 bytes.
-  x <- matrix(as.numeric(rand_bytes(n*8)), ncol = 8)
-  as.numeric(x %*% 256^-(1:8))
 }
 
 #' @useDynLib sodium R_xor

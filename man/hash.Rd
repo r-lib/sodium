@@ -20,11 +20,11 @@ sha512(buf, key = NULL)
 sha256(buf, key = NULL)
 }
 \arguments{
-\item{buf}{raw vector with data to be hashed}
+\item{buf}{data to be hashed}
 
-\item{key}{raw vector with key for HMAC hashing. Optional, except for in \code{shorthash}.}
+\item{key}{key for HMAC hashing. Optional, except for in \code{shorthash}.}
 
-\item{size}{the size of the output hash. Must be between 16 and 64, recommended is 32.}
+\item{size}{length of the output hash. Must be between 16 and 64 (recommended is 32)}
 
 \item{salt}{non-confidential random data to seed the algorithm}
 }

@@ -4,17 +4,14 @@
 \alias{bin2hex}
 \alias{helpers}
 \alias{hex2bin}
-\alias{rand_bytes}
-\alias{rand_num}
+\alias{random}
 \title{Sodium helper functions}
 \usage{
 bin2hex(bin)
 
 hex2bin(hex, ignore = ":")
 
-rand_bytes(n = 1)
-
-rand_num(n = 1)
+random(n = 1)
 }
 \arguments{
 \item{bin}{raw vector with binary data to convert to hex string}
