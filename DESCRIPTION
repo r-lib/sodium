@@ -2,9 +2,13 @@ Package: sodium
 Type: Package
 Title: A Modern and Easy-to-use Crypto Library
 Version: 0.1
-Authors@R: person("Jeroen", "Ooms", ,"jeroen.ooms@stat.ucla.edu", role = c("aut", "cre"))
-Description: Bindings to libsodium: a modern, easy-to-use software library for encryption,
-    decryption, signatures, password hashing and more.
+Author: Jeroen Ooms
+Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
+Description: Bindings to libsodium: a modern, easy-to-use software library for
+    encryption, decryption, signatures, password hashing and more. Sodium makes
+    extensive use of curve25519: a state-of-the-art Diffie-Hellman function by
+    Daniel Bernstein, which has become very popular after it was discovered that
+    the NSA had backdoored Dual EC DRBG.
 License: MIT + file LICENSE
 URL: https://github.com/jeroenooms/sodium https://download.libsodium.org/doc/
 BugReports: https://github.com/jeroenooms/sodium/issues
