@@ -1,6 +1,6 @@
 Package: sodium
 Type: Package
-Title: A Modern and Easy-to-use Crypto Library
+Title: A Modern and Easy-to-Use Crypto Library
 Version: 0.1
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
