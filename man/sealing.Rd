@@ -2,32 +2,49 @@
 % Please edit documentation in R/sealing.R
 \name{Sealed Box}
 \alias{Sealed Box}
-\alias{seal_box}
-\alias{seal_open}
-\title{Sealed Box}
+\alias{decrypt}
+\alias{encrypt}
+\title{Simple Public-key Encryption (Sealed Box)}
 \usage{
-seal_box(msg, pubkey)
+encrypt(msg, pubkey)
 
-seal_open(cipher, key)
+decrypt(bin, key)
+}
+\arguments{
+\item{msg}{a message to be encrypted}
+
+\item{pubkey}{public key of the receiver}
+
+\item{bin}{encrypted ciphertext returned by \code{encrypt}}
+
+\item{key}{private key of the receiver}
 }
 \description{
-A \href{http://doc.libsodium.org/public-key_cryptography/sealed_boxes.html}{sealed box}
-is sodium's term for basic public key encryption without additional authentication.
+Create an encrypted message (sealed box) from a public key.
+}
+\details{
+Basic public key encryption allows for anonymously sending messages to a recipient
+given its public key. Only the recipient can decrypt these messages, using its private
+key.
+
+While the recipient can verify the integrity of the message, it cannot verify the
+identity of the sender. For sending authenticated encrypted messages, use
+\link{secure_send} and \link{secure_recv}.
 }
 \examples{
 # Generate keypair
 key <- keygen()
-pubkey <- pubkey(key)
+pub <- pubkey(key)
 
 # Encrypt message with pubkey
 msg <- serialize(iris, NULL)
-cipher <- seal_box(msg, pubkey)
+ciphertext <- encrypt(msg, pub)
 
 # Decrypt message with private key
-out <- seal_open(cipher, key)
+out <- decrypt(ciphertext, key)
 stopifnot(identical(out, msg))
 }
 \references{
-http://doc.libsodium.org/public-key_cryptography/sealed_boxes.html
+\url{http://doc.libsodium.org/public-key_cryptography/sealed_boxes.html}
 }
 

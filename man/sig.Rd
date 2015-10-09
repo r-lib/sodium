@@ -2,32 +2,50 @@
 % Please edit documentation in R/signing.R
 \name{signing}
 \alias{sig}
-\alias{sig_keygen}
-\alias{sig_pubkey}
-\alias{sig_sign}
-\alias{sig_verify}
+\alias{signature_keygen}
+\alias{signature_pubkey}
+\alias{signature_sign}
+\alias{signature_verify}
 \alias{signing}
 \title{Create and Verify Signatures}
 \usage{
-sig_sign(msg, key)
+signature_sign(msg, key)
 
-sig_verify(msg, sig, pubkey)
+signature_verify(msg, sig, pubkey)
 
-sig_keygen(seed = rand_bytes(32))
+signature_keygen(seed = rand_bytes(32))
 
-sig_pubkey(key)
+signature_pubkey(key)
 }
 \description{
-Create and verify cryptographics signatures
+Cryptographic signatures can be used to verify the integrity of a message using
+the author's public key.
+}
+\details{
+A signature is an authenticated checksum that can be used to check that a message
+(any data) was created by a particular author and was not tampered with. The signature is
+created using a private key and can be verified from the corresponding public key.
+
+Signatures are used when the message itself is not confidential but integrity is
+important. A common use is for software repositories where maintainers include
+a signature of the package index. This allows client package managers to verify
+that the binaries were not modified by intermediate parties in the distribution
+process.
+
+For confidential data, use authenticated encryption (\link{secure_send})
+which allows for sending signed and encrypted messages in a single method.
+
+Currently sodium uses a different type of key pair (ed25519) for signatures than
+for encryption (curve25519).
 }
 \examples{
 # Generate keypair
-key <- sig_keygen()
-pubkey <- sig_pubkey(key)
+key <- signature_keygen()
+pubkey <- signature_pubkey(key)
 
 # Create signature
 msg <- serialize(iris, NULL)
-sig <- sig_sign(msg, key)
-sig_verify(msg, sig, pubkey)
+sig <- signature_sign(msg, key)
+signature_verify(msg, sig, pubkey)
 }
 

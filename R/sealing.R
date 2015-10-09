@@ -1,25 +1,36 @@
-#' Sealed Box
+#' Simple Public-key Encryption (Sealed Box)
 #'
-#' A \href{http://doc.libsodium.org/public-key_cryptography/sealed_boxes.html}{sealed box}
-#' is sodium's term for basic public key encryption without additional authentication.
+#' Create an encrypted message (sealed box) from a public key.
+#'
+#' Basic public key encryption allows for anonymously sending messages to a recipient
+#' given its public key. Only the recipient can decrypt these messages, using its private
+#' key.
+#'
+#' While the recipient can verify the integrity of the message, it cannot verify the
+#' identity of the sender. For sending authenticated encrypted messages, use
+#' \link{secure_send} and \link{secure_recv}.
 #'
 #' @export
 #' @rdname sealing
 #' @name Sealed Box
 #' @useDynLib sodium R_seal_box
-#' @references http://doc.libsodium.org/public-key_cryptography/sealed_boxes.html
+#' @references \url{http://doc.libsodium.org/public-key_cryptography/sealed_boxes.html}
+#' @param msg a message to be encrypted
+#' @param key private key of the receiver
+#' @param pubkey public key of the receiver
+#' @param bin encrypted ciphertext returned by \code{encrypt}
 #' @examples # Generate keypair
 #' key <- keygen()
-#' pubkey <- pubkey(key)
+#' pub <- pubkey(key)
 #'
 #' # Encrypt message with pubkey
 #' msg <- serialize(iris, NULL)
-#' cipher <- seal_box(msg, pubkey)
+#' ciphertext <- encrypt(msg, pub)
 #'
 #' # Decrypt message with private key
-#' out <- seal_open(cipher, key)
+#' out <- decrypt(ciphertext, key)
 #' stopifnot(identical(out, msg))
-seal_box <- function(msg, pubkey){
+encrypt <- function(msg, pubkey){
   stopifnot(is.raw(msg))
   stopifnot(is.raw(pubkey))
   .Call(R_seal_box, msg, pubkey)
@@ -28,8 +39,8 @@ seal_box <- function(msg, pubkey){
 #' @export
 #' @rdname sealing
 #' @useDynLib sodium R_seal_open
-seal_open <- function(cipher, key){
-  stopifnot(is.raw(cipher))
+decrypt <- function(bin, key){
+  stopifnot(is.raw(bin))
   stopifnot(is.raw(key))
-  .Call(R_seal_open, cipher, key)
+  .Call(R_seal_open, bin, key)
 }

@@ -2,8 +2,9 @@
 #'
 #' Generate deterministic streams of random data based off a secret key and random nonce.
 #'
-#' You usually don't need to call these methods directly. For general purpose encryption
+#' You usually don't need to call these methods directly. For local encryption
 #' use the high-level functions \link{secret_encrypt} and \link{secret_decrypt}.
+#' For secure communication use \link{secure_send} and \link{secure_recv}.
 #'
 #' Random streams form the basis for most cryptographic methods. Based a shared secret
 #' (the key) we generate a predictable random data stream of equal length as the message
@@ -35,24 +36,21 @@
 #' # Encrypt:
 #' key <- hash(passwd)
 #' nonce8 <- rand_bytes(8)
-#' stream <- chacha(length(message), key, nonce8)
+#' stream <- chacha20(length(message), key, nonce8)
 #' ciphertext <- base::xor(stream, message)
 #'
 #' # Decrypt:
-#' stream <- chacha(length(ciphertext), key, nonce8)
+#' stream <- chacha20(length(ciphertext), key, nonce8)
 #' out <- base::xor(ciphertext, stream)
-#' print(rawToChar(out))
+#' stopifnot(identical(out, message))
 #'
 #' # Other stream ciphers
-#' stream2 <- salsa(10000, key, nonce8)
-#'
-#' nonce24 <- rand_bytes(24)
-#' stream3 <- xsalsa(10000, key, nonce24)
+#' stream <- salsa20(10000, key, nonce8)
+#' stream <- xsalsa20(10000, key, rand_bytes(24))
 #'
 #' shortkey <- hash(passwd, size = 16)
-#' nonce16 <- rand_bytes(16)
-#' stream4 <- aes(10000, shortkey, nonce16)
-chacha <- function(n, key, nonce){
+#' stream <- aes128(10000, shortkey, rand_bytes(16))
+chacha20 <- function(n, key, nonce){
   stopifnot(is.numeric(n))
   stopifnot(is.raw(key))
   stopifnot(is.raw(nonce))
@@ -62,7 +60,7 @@ chacha <- function(n, key, nonce){
 #' @export
 #' @useDynLib sodium R_stream_salsa20
 #' @rdname stream
-salsa <- function(n, key, nonce){
+salsa20 <- function(n, key, nonce){
   stopifnot(is.numeric(n))
   stopifnot(is.raw(key))
   stopifnot(is.raw(nonce))
@@ -72,7 +70,7 @@ salsa <- function(n, key, nonce){
 #' @export
 #' @useDynLib sodium R_stream_xsalsa20
 #' @rdname stream
-xsalsa <- function(n, key, nonce){
+xsalsa20 <- function(n, key, nonce){
   stopifnot(is.numeric(n))
   stopifnot(is.raw(key))
   stopifnot(is.raw(nonce))
@@ -82,7 +80,7 @@ xsalsa <- function(n, key, nonce){
 #' @export
 #' @useDynLib sodium R_stream_aes128ctr
 #' @rdname stream
-aes <- function(n, key, nonce){
+aes128 <- function(n, key, nonce){
   stopifnot(is.numeric(n))
   stopifnot(is.raw(key))
   stopifnot(is.raw(nonce))
