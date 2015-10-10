@@ -24,9 +24,9 @@
 #' @useDynLib sodium R_stream_chacha20
 #' @rdname stream
 #' @aliases stream
-#' @name streaming
-#' @param n integer how many bytes to generate
-#' @param key raw vector of size 32 with secret data
+#' @name Stream ciphers
+#' @param n length of output in bytes
+#' @param key secret key used to set the cipher
 #' @param nonce non-secret unique data to randomize the cipher
 #' @examples # Very basic encryption
 #' myfile <- file.path(R.home(), "COPYING")

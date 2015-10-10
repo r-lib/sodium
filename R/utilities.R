@@ -1,4 +1,4 @@
-#' Sodium helper functions
+#' Sodium Utilities
 #'
 #' The functions \code{bin2hex} and \code{hex2bin} convert between binary (raw)
 #' vectors and corresponding string in hexadecimal notation. The \code{random}
@@ -7,7 +7,7 @@
 #' @useDynLib sodium R_sodium_bin2hex
 #' @export
 #' @rdname helpers
-#' @name helpers
+#' @name Sodium utilities
 #' @aliases helpers
 #' @family sodium
 #' @param bin raw vector with binary data to convert to hex string

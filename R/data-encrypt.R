@@ -1,4 +1,4 @@
-#' Symmetric Authenticated Encryption
+#' Symmetric Encryption and Tagging
 #'
 #' Secret key encryption with authentication using a 256 bit key. Mostly useful for
 #' encrypting local data. For secure communication use public-key encryption instead
@@ -22,7 +22,7 @@
 #'
 #' @export
 #' @rdname symmetric
-#' @name symmetric methods
+#' @name Symmetric encryption
 #' @useDynLib sodium R_crypto_secret_encrypt
 #' @param msg message to be encrypted
 #' @param key shared secret key used for both encryption and decryption

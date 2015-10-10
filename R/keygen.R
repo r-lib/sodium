@@ -28,7 +28,7 @@
 #'
 #' @export
 #' @rdname keygen
-#' @name keygen
+#' @name Key generation
 #' @param key private key for which to calculate the public key
 #' @param seed random data to seed the keygen
 #' @useDynLib sodium R_keygen

@@ -1,6 +1,6 @@
 #' Authenticated Encryption
 #'
-#' Exchange fully secured messages through authenticated encryption.
+#' Exchange secure messages through authenticated encryption.
 #'
 #' Authenticated encryption implements best practices for secure messaging.
 #' It requires that both sender and receiver have a keypair and know each
@@ -19,7 +19,7 @@
 #' @export
 #' @useDynLib sodium R_secure_send
 #' @rdname messaging
-#' @name messaging
+#' @name Authenticated encryption
 #' @references \url{http://doc.libsodium.org/public-key_cryptography/authenticated_encryption.html}
 #' @examples # Bob's keypair:
 #' bob_key <- keygen()

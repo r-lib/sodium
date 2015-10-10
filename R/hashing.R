@@ -23,7 +23,7 @@
 #' recommended is at least 32.
 #'
 #' @rdname hash
-#' @name hashing
+#' @name Hash functions
 #' @aliases hashing
 #' @references \url{https://download.libsodium.org/doc/hashing/generic_hashing.html}
 #' @useDynLib sodium R_crypto_generichash

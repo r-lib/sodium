@@ -20,7 +20,7 @@
 #' for encryption (curve25519).
 #'
 #' @rdname sig
-#' @name signing
+#' @name Signatures
 #' @aliases sig
 #' @export
 #' @useDynLib sodium R_sig_sign

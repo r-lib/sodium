@@ -12,7 +12,7 @@
 #'
 #' @export
 #' @rdname simple
-#' @name simple encryption
+#' @name Simple encryption
 #' @useDynLib sodium R_seal_box
 #' @references \url{http://doc.libsodium.org/public-key_cryptography/sealed_boxes.html}
 #' @param msg message to be encrypted
