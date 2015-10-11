@@ -28,6 +28,7 @@
 #' @param n length of output in bytes
 #' @param key secret key used to set the cipher
 #' @param nonce non-secret unique data to randomize the cipher
+#' @references \url{https://download.libsodium.org/doc/advanced/xsalsa20.html}
 #' @examples # Very basic encryption
 #' myfile <- file.path(R.home(), "COPYING")
 #' message <- readBin(myfile, raw(), file.info(myfile)$size)

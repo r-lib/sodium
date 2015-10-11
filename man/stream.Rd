@@ -70,4 +70,7 @@ stream <- xsalsa20(10000, key, random(24))
 shortkey <- hash(passwd, size = 16)
 stream <- aes128(10000, shortkey, random(16))
 }
+\references{
+\url{https://download.libsodium.org/doc/advanced/xsalsa20.html}
+}
 
