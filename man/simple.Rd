@@ -20,7 +20,7 @@ simple_decrypt(bin, key)
 \item{key}{private key of the receiver}
 }
 \description{
-Create an encrypted message (sealed box) from a public key.
+Create an encrypted message (sealed box) from a curve25519 public key.
 }
 \details{
 Simple public key encryption allows for sending anonymous encrypted messages to

@@ -3,19 +3,19 @@
 \name{Signatures}
 \alias{Signatures}
 \alias{sig}
-\alias{signature_keygen}
-\alias{signature_pubkey}
-\alias{signature_sign}
-\alias{signature_verify}
+\alias{sig_keygen}
+\alias{sig_pubkey}
+\alias{sig_sign}
+\alias{sig_verify}
 \title{Create and Verify Signatures}
 \usage{
-signature_sign(msg, key)
+sig_sign(msg, key)
 
-signature_verify(msg, sig, pubkey)
+sig_verify(msg, sig, pubkey)
 
-signature_keygen(seed = random(32))
+sig_keygen(seed = random(32))
 
-signature_pubkey(key)
+sig_pubkey(key)
 }
 \arguments{
 \item{msg}{message to sign}
@@ -46,17 +46,20 @@ process.
 For confidential data, use authenticated encryption (\link{auth_encrypt})
 which allows for sending signed and encrypted messages in a single method.
 
-Currently sodium uses a different type of key pair (ed25519) for signatures than
-for encryption (curve25519).
+Currently sodium requires a different type of key pairfor signatures  (ed25519)
+than for encryption (curve25519).
 }
 \examples{
 # Generate keypair
-key <- signature_keygen()
-pubkey <- signature_pubkey(key)
+key <- sig_keygen()
+pubkey <- sig_pubkey(key)
 
 # Create signature
 msg <- serialize(iris, NULL)
-sig <- signature_sign(msg, key)
-signature_verify(msg, sig, pubkey)
+sig <- sig_sign(msg, key)
+sig_verify(msg, sig, pubkey)
+}
+\references{
+\url{http://doc.libsodium.org/public-key_cryptography/public-key_signatures.html}
 }
 

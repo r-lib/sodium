@@ -1,6 +1,6 @@
 #' Authenticated Encryption
 #'
-#' Exchange secure messages through authenticated encryption.
+#' Exchange secure messages through curve25519 authenticated encryption.
 #'
 #' Authenticated encryption implements best practices for secure messaging.
 #' It requires that both sender and receiver have a keypair and know each

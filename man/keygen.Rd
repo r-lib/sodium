@@ -16,8 +16,8 @@ pubkey(key)
 \item{key}{private key for which to calculate the public key}
 }
 \description{
-Functions to generate a random private key and calculate the corresponding public
-key.
+Functions to generate a random private key and calculate the corresponding curve25519
+public key.
 }
 \details{
 Asymmetric methods rely on public-private keypairs. The private keys are secret and

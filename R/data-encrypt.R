@@ -1,8 +1,8 @@
 #' Symmetric Encryption and Tagging
 #'
-#' Secret key encryption with authentication using a 256 bit key. Mostly useful for
-#' encrypting local data. For secure communication use public-key encryption instead
-#' (\link{auth_encrypt}).
+#' Encryption with authentication using a 256 bit shared secret. Mainly useful for
+#' encrypting local data. For secure communication use public-key encryption
+#' (\link{simple_encrypt} and \link{auth_encrypt}).
 #'
 #' Symmetric encryption uses a secret key to encode and decode a message. This can be
 #' used to encrypt local data on disk, or as a building block for more complex methods.
@@ -17,8 +17,9 @@
 #' randomize the cipher to protect gainst re-use attacks. This way you can use one
 #' and the same secret for encrypting multiple messages.
 #'
-#' The \link{data_tag} function generates an authenticated hash that can be used to
-#' verify the integrity of piece of data from an earlier generated tag.
+#' The \link{data_tag} function generates an authenticated hash that can be stored
+#' alongside the data to be able to verify the integrity of the data later on. For
+#' public key signatures see \code{sig_sign} instead.
 #'
 #' @export
 #' @rdname symmetric

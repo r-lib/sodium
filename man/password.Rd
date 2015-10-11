@@ -36,4 +36,7 @@ hash <- password_store(password)
 # To verify the password when the user logs in
 stopifnot(password_verify(hash, password))
 }
+\references{
+\url{http://doc.libsodium.org/password_hashing/}
+}
 

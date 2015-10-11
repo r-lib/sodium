@@ -1,6 +1,6 @@
 #' Anonymous Public-key Encryption (Sealed Box)
 #'
-#' Create an encrypted message (sealed box) from a public key.
+#' Create an encrypted message (sealed box) from a curve25519 public key.
 #'
 #' Simple public key encryption allows for sending anonymous encrypted messages to
 #' a recipient given its public key. Only the recipient can decrypt these messages,

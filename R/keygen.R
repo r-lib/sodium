@@ -1,7 +1,7 @@
 #' Keypair Generation
 #'
-#' Functions to generate a random private key and calculate the corresponding public
-#' key.
+#' Functions to generate a random private key and calculate the corresponding curve25519
+#' public key.
 #'
 #' Asymmetric methods rely on public-private keypairs. The private keys are secret and
 #' should never be shared with anyone. The public key on the other hand is not confidential
