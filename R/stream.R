@@ -25,8 +25,8 @@
 #' @rdname stream
 #' @aliases stream
 #' @name Stream ciphers
-#' @param n length of output in bytes
-#' @param key secret key used to set the cipher
+#' @param size length of cipher stream in bytes
+#' @param key secret key used by the cipher
 #' @param nonce non-secret unique data to randomize the cipher
 #' @references \url{https://download.libsodium.org/doc/advanced/xsalsa20.html}
 #' @examples # Very basic encryption
@@ -51,39 +51,39 @@
 #'
 #' shortkey <- hash(passwd, size = 16)
 #' stream <- aes128(10000, shortkey, random(16))
-chacha20 <- function(n, key, nonce){
-  stopifnot(is.numeric(n))
+chacha20 <- function(size, key, nonce){
+  stopifnot(is.numeric(size))
   stopifnot(is.raw(key))
   stopifnot(is.raw(nonce))
-  .Call(R_stream_chacha20, n, key, nonce)
+  .Call(R_stream_chacha20, size, key, nonce)
 }
 
 #' @export
 #' @useDynLib sodium R_stream_salsa20
 #' @rdname stream
-salsa20 <- function(n, key, nonce){
-  stopifnot(is.numeric(n))
+salsa20 <- function(size, key, nonce){
+  stopifnot(is.numeric(size))
   stopifnot(is.raw(key))
   stopifnot(is.raw(nonce))
-  .Call(R_stream_salsa20, n, key, nonce)
+  .Call(R_stream_salsa20, size, key, nonce)
 }
 
 #' @export
 #' @useDynLib sodium R_stream_xsalsa20
 #' @rdname stream
-xsalsa20 <- function(n, key, nonce){
-  stopifnot(is.numeric(n))
+xsalsa20 <- function(size, key, nonce){
+  stopifnot(is.numeric(size))
   stopifnot(is.raw(key))
   stopifnot(is.raw(nonce))
-  .Call(R_stream_xsalsa20, n, key, nonce)
+  .Call(R_stream_xsalsa20, size, key, nonce)
 }
 
 #' @export
 #' @useDynLib sodium R_stream_aes128ctr
 #' @rdname stream
-aes128 <- function(n, key, nonce){
-  stopifnot(is.numeric(n))
+aes128 <- function(size, key, nonce){
+  stopifnot(is.numeric(size))
   stopifnot(is.raw(key))
   stopifnot(is.raw(nonce))
-  .Call(R_stream_aes128ctr, n, key, nonce)
+  .Call(R_stream_aes128ctr, size, key, nonce)
 }

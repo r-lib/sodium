@@ -9,18 +9,18 @@
 \alias{xsalsa20}
 \title{Stream Ciphers}
 \usage{
-chacha20(n, key, nonce)
+chacha20(size, key, nonce)
 
-salsa20(n, key, nonce)
+salsa20(size, key, nonce)
 
-xsalsa20(n, key, nonce)
+xsalsa20(size, key, nonce)
 
-aes128(n, key, nonce)
+aes128(size, key, nonce)
 }
 \arguments{
-\item{n}{length of output in bytes}
+\item{size}{length of cipher stream in bytes}
 
-\item{key}{secret key used to set the cipher}
+\item{key}{secret key used by the cipher}
 
 \item{nonce}{non-secret unique data to randomize the cipher}
 }
