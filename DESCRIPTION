@@ -13,3 +13,5 @@ License: MIT + file LICENSE
 URL: https://github.com/jeroenooms/sodium https://download.libsodium.org/doc/
 BugReports: https://github.com/jeroenooms/sodium/issues
 SystemRequirements: libsodium
+VignetteBuilder: knitr
+Suggests: rmarkdown
