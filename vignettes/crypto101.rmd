@@ -1,0 +1,50 @@
+---
+title: "How does cryptography work?"
+output: html_document
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{How does cryptography work?}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(comment = "")
+library(sodium)
+```
+
+This page attempts to give a very basic conceptual introduction to cryptographic methods. Before we start the usual disclaimer:
+
+___I am not a cryptographer. This document is only for educational purposes. Crypto is hard, you should never trust your home-grown implementation. Unless you're a cryptographer you will probably overlook some crucial details. Developers should only use the high-level functions that have been implemented by an actual cryptographer.___
+
+Now that we got this is out of the way, let's start hacking :)
+
+### The XOR operator 
+
+The bitwise XOR operator outputs `true` only when both inputs differ (one is `true`, the other is `false`). It is sometimes called an *invertor* because the output of `x` gets inverted if and only if `y` is true:
+
+```{r}
+print(x <- rawToBits(as.raw(123)))
+print(y <- rawToBits(as.raw(42)))
+base::xor(x, y)
+```
+
+In cryptography we `xor` a message `x` with secret random data `y`. Because each bit in `y` is randomly `true` with probability 0.5, the `xor` output is completely random and uncorrelated to `x`, which is called perfect secrecy. Only if we know `y` we can decipher the message `x`.
+
+```{r}
+# Encrypt message using random one-time-pad
+msg <- charToRaw("TTIP is evil")
+pad <- random(length(msg))
+ciphertext <- base::xor(msg, pad)
+
+# It's really encrypted
+rawToChar(ciphertext)
+
+# Decrypt with same pad
+rawToChar(base::xor(ciphertext, pad))
+```
+
+This method forms the basis for most cryptograhpic methods. However one-time-pads by themselves are not very practical for encrypting large messages. Also we should never re-use `y` for encrypting multiple messages that would compromise the randomness. The challenge is coming up with smart ways of generating unique, random, reproducible `y` data every time we want to encrypt something.
+
+### Stream ciphers
+

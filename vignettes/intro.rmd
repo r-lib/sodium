@@ -28,7 +28,7 @@ The goal of Sodium is to provide the core operations needed to build higher-leve
 
 ### Using Sodium
 
-All Sodium functions operate on binary data, called 'raw' vectors in R. Use `charToRaw` and `rawToChar` to convert between strings and raw vectors. Alterantively `hex2bin` and `bin2hex` can convert between binary data to strings in hex notation:
+All Sodium functions operate on binary data, called 'raw' vectors in R. Use `charToRaw` and `rawToChar` to convert between strings and raw vectors. Alternatively `hex2bin` and `bin2hex` can convert between binary data to strings in hex notation:
 
 ```{r}
 test <- hash(charToRaw("test 123"))
