@@ -132,6 +132,31 @@ The Sodium functions `data_encrypt` and `data_decrypt` provide a more elaborate 
 
 Symmetric encryption can be used for e.g. encrypting local data. However because the same secret is used for both encryption and decryption, it is impractical for communication with other parties. For exchanging secure messages we need public key encryption.
 
-### Public-key encryption and diffie-hellman
+### Public-key encryption and Diffie-Hellman
+
+Rather than using a single secret-key, assymetric (public key) encryption requires a *keypair*, consisting of a *public key* for encryption and a *private-key* for decryption. Data that is encrypted using a public key can only be decrypted using the corresponding private key. 
+
+The public key is not confidential and can be shared on e.g. a website or keyserver. This allows anyone to send somebody a secure message by encrypting it with the receivers public key. The encrypted message will only be readable by the owner of the corresponding private key.
+
+```{r}
+# Create keypair
+key <- keygen()
+pub <- pubkey(key)
+
+# Encrypt message for receiver using his/her public key
+msg <- serialize(iris, NULL)
+ciphertext <- simple_encrypt(msg, pub)
+
+# Receiver decrypts with his/her private key
+out <- simple_decrypt(ciphertext, key)
+stopifnot(identical(msg, out))
+```
+
+The implementation of public key encryption requires a [Diffie-Hellman](http://mathworld.wolfram.com/Diffie-HellmanProtocol.html) function: a method which allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel.
+
+There are many variations 
+
+
+
 
 
