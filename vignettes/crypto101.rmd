@@ -116,18 +116,22 @@ stream <- chacha20(length(message), key, nonce8)
 ciphertext <- base::xor(stream, message)
 ```
 
-Now the `ciphertext` is an encrypted version of the message. Only if we know the `key` and the `nonce`, we can re-generate the keystream in order to `xor` the ciphertext back into the original message. 
+Now the `ciphertext` is an encrypted version of the message. Only those that know the `key` and the `nonce` can re-generate the same keystream in order to `xor` the ciphertext back into the original message. 
 
 ```{r}
 # Decrypt with the same key
 key <- hash(charToRaw("My secret passphrase"))
 stream <- chacha20(length(ciphertext), key, nonce8)
 out <- base::xor(ciphertext, stream)
-stopifnot(identical(out, message))
+
+# Print part of the message
+cat(substring(rawToChar(out), 1, 120))
 ```
 
-This already provides a suitable basis for e.g. encrypting local data on disk. However because the same secret is used for both encryption and decryption, symmetric encryption by itself is impractical for communication. For exchanging secure messages with other parties, we need public key encryption.
+The Sodium functions `data_encrypt` and `data_decrypt` provide a more elaborate implementation of the above. This is what you should use in practice for secret key encryption.
 
-### Asymmetric (public key) encryption
+Symmetric encryption can be used for e.g. encrypting local data. However because the same secret is used for both encryption and decryption, it is impractical for communication with other parties. For exchanging secure messages we need public key encryption.
+
+### Public-key encryption and diffie-hellman
 
 
