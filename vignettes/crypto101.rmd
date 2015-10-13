@@ -21,30 +21,113 @@ Now that we got this is out of the way, let's start hacking :)
 
 ### The XOR operator 
 
-The bitwise XOR operator outputs `true` only when both inputs differ (one is `true`, the other is `false`). It is sometimes called an *invertor* because the output of `x` gets inverted if and only if `y` is true:
+The logical [XOR operator](https://en.wikipedia.org/wiki/Exclusive_or#Truth_table) outputs `true` only when both inputs differ (one is `true`, the other is `false`). It is sometimes called an *invertor* because the output of `x` gets inverted if and only if `y` is true:
 
 ```{r}
-print(x <- rawToBits(as.raw(123)))
-print(y <- rawToBits(as.raw(42)))
-base::xor(x, y)
+# XOR two (8bit) bytes 'x' and 'y'
+x <- as.raw(0x7b)
+y <- as.raw(0x2a)
+z <- base::xor(x, y)
+dput(z)
+
+# Show the bits in each byte
+cbind(x = rawToBits(x), y = rawToBits(y), z = rawToBits(z))
 ```
 
-In cryptography we `xor` a message `x` with secret random data `y`. Because each bit in `y` is randomly `true` with probability 0.5, the `xor` output is completely random and uncorrelated to `x`, which is called perfect secrecy. Only if we know `y` we can decipher the message `x`.
+In cryptography we `xor` a message `x` with secret random data `y`. Because each bit in `y` is randomly `true` with probability 0.5, the `xor` output is completely random and uncorrelated to `x`. This is called *perfect secrecy*. Only if we know `y` we can decipher the message `x`.
 
 ```{r}
 # Encrypt message using random one-time-pad
 msg <- charToRaw("TTIP is evil")
-pad <- random(length(msg))
-ciphertext <- base::xor(msg, pad)
+one_time_pad <- random(length(msg))
+ciphertext <- base::xor(msg, one_time_pad)
 
 # It's really encrypted
 rawToChar(ciphertext)
 
 # Decrypt with same pad
-rawToChar(base::xor(ciphertext, pad))
+rawToChar(base::xor(ciphertext, one_time_pad))
 ```
 
-This method forms the basis for most cryptograhpic methods. However one-time-pads by themselves are not very practical for encrypting large messages. Also we should never re-use `y` for encrypting multiple messages that would compromise the randomness. The challenge is coming up with smart ways of generating unique, random, reproducible `y` data every time we want to encrypt something.
+This method is perfectly secure and forms the basis for most cryptograhpic methods. However the challenge is generating and communicating unique pseudo-random `y` data every time we want to encrypt something. One-time-pads as in the example are not very practical for large messages. Also we should never re-use a one-time-pad `y` for encrypting multiple messages, as this  compromises the secrecy. 
 
 ### Stream ciphers
+
+A *stream cipher* generates a unique stream of pseudo-random data based on a secret `key` and a unique `nonce`. Given the parameters it always generates the same stream. Sodium has a few stream ciphers:
+
+```{r}
+password <- "My secret passphrase"
+key <- hash(charToRaw(password))
+nonce <- random(8)
+chacha20(size = 20, key, nonce)
+salsa20(size = 20, key, nonce)
+```
+
+Over the years cryptographers have come up with many more variants. Many stream ciphers are based on a block cipher such as [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard): a keyed permutation of fixed length amount of data. The block ciphers get chained in a particular [mode of operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) which repeatedly applies the cipher's single-block operation to securely transform amounts of data larger than a block.
+
+We are not going to discuss implementation details, but if you think hard enough you could probably come up with something yourself. For example you could use a hash function such `sha256` and append counter which is incremented for each block (this is called CTR mode).
+
+
+```{r}
+# Illustrative example.
+sha256_ctr <- function(size, key, nonce){
+  n <- ceiling(size/32)
+  output <- raw()
+  for(i in 1:n){
+    counter <- packBits(intToBits(i))
+    block <- sha256(c(key, nonce, counter))
+    output <- c(output, block)
+  }
+  return(output[1:size])
+}
+```
+
+This allows us to generate an arbitrary length stream from a single secret key:
+
+```{r}
+password <- "My secret passphrase"
+key <- hash(charToRaw(password))
+nonce <- random(8)
+sha256_ctr(50, key, nonce)
+```
+
+Each stream requires a `key` and a `nonce`. The key forms the shared secret and should only known to the trusted parties. The `nonce` is not secret and is stored or sent along with the ciphertext. The purpose of the `nonce` is to make a random stream unique to protect gainst re-use attacks. This way you can re-use a your key to encrypt multiple messages, as long as you never re-use the same nonce.
+
+In practice, you should never write your own ciphers. A lot of [research](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.58.1811&rep=rep1&type=pdf) goes into studying the properties of block ciphers under various modes of operation. In the remainder we just use the standard Sodium ciphers: `chacha20`, `salsa20`, `xsalsa20` or `aes128`.
+
+### Symmetric encryption
+
+Symmetric encryption means that the same secret key is used for both encryption and decryption. All that is needed to implement symmetric encryption is `xor` and a stream cipher. For example to encrypt an arbitrary length `message` using `password`:
+
+```{r}
+# Encrypt 'message' using 'password'
+myfile <- file.path(R.home(), "COPYING")
+message <- readBin(myfile, raw(), file.info(myfile)$size)
+passwd <- charToRaw("My secret passphrase")
+```
+
+We convert the password to a key of suitable size and use it to generate a random stream of equal length of the message:
+
+```{r}
+# Basic secret key encryption
+key <- hash(passwd)
+nonce8 <- random(8)
+stream <- chacha20(length(message), key, nonce8)
+ciphertext <- base::xor(stream, message)
+```
+
+Now the `ciphertext` is an encrypted version of the message. Only if we know the `key` and the `nonce`, we can re-generate the keystream in order to `xor` the ciphertext back into the original message. 
+
+```{r}
+# Decrypt with the same key
+key <- hash(charToRaw("My secret passphrase"))
+stream <- chacha20(length(ciphertext), key, nonce8)
+out <- base::xor(ciphertext, stream)
+stopifnot(identical(out, message))
+```
+
+This already provides a suitable basis for e.g. encrypting local data on disk. However because the same secret is used for both encryption and decryption, symmetric encryption by itself is impractical for communication. For exchanging secure messages with other parties, we need public key encryption.
+
+### Asymmetric (public key) encryption
+
 
