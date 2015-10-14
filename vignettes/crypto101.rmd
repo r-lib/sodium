@@ -152,11 +152,24 @@ out <- simple_decrypt(ciphertext, key)
 stopifnot(identical(msg, out))
 ```
 
-The implementation of public key encryption requires a [Diffie-Hellman](http://mathworld.wolfram.com/Diffie-HellmanProtocol.html) function: a method which allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel.
+How does this work? Public key encryption makes use of [Diffie-Hellman](http://mathworld.wolfram.com/Diffie-HellmanProtocol.html): a method which allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. In the most simple case, both parties generate a temporary keypair and exchange their public key over the insecure channel. Diffie-Hellman allows both parties to calculate the (same) shared secret by combining their own private key with the other person's public key:
 
-There are many variations 
+```{r}
+# Bob generates keypair
+bob_key <- keygen()
+bob_pubkey <- pubkey(bob_key)
 
+# Alice generates keypair
+alice_key <- keygen()
+alice_pubkey <- pubkey(alice_key)
 
+# After Bob and Alice exchange pubkey they can both derive the secret
+alice_secret <- diffie_hellman(alice_key, bob_pubkey)
+bob_secret <- diffie_hellman(bob_key, alice_pubkey)
+identical(alice_secret, bob_secret)
+```
 
+Once the shared secret has been established, both parties can discard their temporary public/private key and use the shared secret to start encrypting communications with symmetric encryption as discussed earlier. Because the shared secret cannot be calculated using only the public keys, the process is safe from eavesdroppers.
 
+The classical [Diffie-Hellman method](http://mathworld.wolfram.com/Diffie-HellmanProtocol.html) is based on the discrete logarithm problem with very large prime numbers. Sodium uses [curve25519](http://cr.yp.to/ecdh/curve25519-20060209.pdf), a state-of-the-art function by Daniel Bernsteinan designed for use with the elliptic curve Diffie–Hellman (ECDH) key agreement scheme.
 
