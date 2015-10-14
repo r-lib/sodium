@@ -152,7 +152,7 @@ out <- simple_decrypt(ciphertext, key)
 stopifnot(identical(msg, out))
 ```
 
-How does this work? Public key encryption makes use of [Diffie-Hellman](http://mathworld.wolfram.com/Diffie-HellmanProtocol.html): a method which allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. In the most simple case, both parties generate a temporary keypair and exchange their public key over the insecure channel. Diffie-Hellman allows both parties to calculate the (same) shared secret by combining their own private key with the other person's public key:
+How does this work? Public key encryption makes use of [Diffie-Hellman](http://mathworld.wolfram.com/Diffie-HellmanProtocol.html) (D-H): a method which allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. In the most simple case, both parties generate a temporary keypair and exchange their public key over the insecure channel. Then both parties use the D-H function to calculcate the (same) shared secret key by combining their own private key with the other person's public key:
 
 ```{r}
 # Bob generates keypair
