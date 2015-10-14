@@ -33,8 +33,8 @@ The logical [XOR operator](https://en.wikipedia.org/wiki/Exclusive_or#Truth_tabl
 
 ```{r}
 # XOR two (8bit) bytes 'x' and 'y'
-x <- as.raw(0x7b)
-y <- as.raw(0x2a)
+x <- as.raw(0x7a)
+y <- as.raw(0xe4)
 z <- base::xor(x, y)
 dput(z)
 
