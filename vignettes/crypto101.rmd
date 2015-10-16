@@ -3,7 +3,7 @@ title: "How does cryptography work?"
 output: html_document
 date: "`r Sys.Date()`"
 vignette: >
-  %\VignetteIndexEntry{How does cryptography work?}
+  %\VignetteIndexEntry{How does cryptography work}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
@@ -61,19 +61,24 @@ This method is perfectly secure and forms the basis for most cryptograhpic metho
 
 ### Stream ciphers
 
-A *stream cipher* generates a unique stream of pseudo-random data based on a secret `key` and a unique `nonce`. Given the parameters it always generates the same stream. Sodium has a few stream ciphers:
+A *stream cipher* generates a unique stream of pseudo-random data based on a secret `key` and a unique `nonce`. For a given set of parameters the stream cipher always generates the same stream of data. Sodium implements a few popular stream ciphers:
 
 ```{r}
 password <- "My secret passphrase"
 key <- hash(charToRaw(password))
 nonce <- random(8)
 chacha20(size = 20, key, nonce)
+```
+
+Each stream requires a `key` and a `nonce`. The key forms the shared secret and should only be known to trusted parties. The `nonce` is not secret and is stored or sent along with the ciphertext. The purpose of the `nonce` is to make a random stream unique to protect gainst re-use attacks. This way you can re-use a your key to encrypt multiple messages, as long as you never re-use the same nonce.
+
+```{r}
 salsa20(size = 20, key, nonce)
 ```
 
 Over the years cryptographers have come up with many more variants. Many stream ciphers are based on a block cipher such as [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard): a keyed permutation of fixed length amount of data. The block ciphers get chained in a particular [mode of operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) which repeatedly applies the cipher's single-block operation to securely transform amounts of data larger than a block.
 
-We are not going to discuss implementation details, but if you think hard enough you could probably come up with something yourself. For example you could use a hash function such `sha256` and append counter which is incremented for each block (this is called CTR mode).
+We are not going to discuss implementation details, but you could probably come up with something yourself. For example you could use a hash function such `sha256` as the block cipher and append counter which is incremented for each block (this is called CTR mode).
 
 
 ```{r}
@@ -99,9 +104,9 @@ nonce <- random(8)
 sha256_ctr(50, key, nonce)
 ```
 
-Each stream requires a `key` and a `nonce`. The key forms the shared secret and should only known to the trusted parties. The `nonce` is not secret and is stored or sent along with the ciphertext. The purpose of the `nonce` is to make a random stream unique to protect gainst re-use attacks. This way you can re-use a your key to encrypt multiple messages, as long as you never re-use the same nonce.
 
-In practice, you should never write your own ciphers. A lot of [research](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.58.1811&rep=rep1&type=pdf) goes into studying the properties of block ciphers under various modes of operation. In the remainder we just use the standard Sodium ciphers: `chacha20`, `salsa20`, `xsalsa20` or `aes128`.
+
+In practice, you should never write your own ciphers. A lot of [research](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.58.1811&rep=rep1&type=pdf) goes into studying the properties of block ciphers under various modes of operation. In the remainder we just use the standard Sodium ciphers: `chacha20`, `salsa20`, `xsalsa20` or `aes128`. See sodium [documentation](https://download.libsodium.org/doc/advanced/aes-128-ctr.html) for details.
 
 ### Symmetric encryption
 
@@ -114,7 +119,7 @@ message <- readBin(myfile, raw(), file.info(myfile)$size)
 passwd <- charToRaw("My secret passphrase")
 ```
 
-We convert the password to a key of suitable size and use it to generate a random stream of equal length of the message:
+A hash function converts the password to a key of suitable size for the stream cipher, which we use to generate a psuedo random stream of equal length to the message:
 
 ```{r}
 # Basic secret key encryption
@@ -142,7 +147,7 @@ Symmetric encryption can be used for e.g. encrypting local data. However because
 
 ### Public-key encryption and Diffie-Hellman
 
-Rather than using a single secret-key, assymetric (public key) encryption requires a *keypair*, consisting of a *public key* for encryption and a *private-key* for decryption. Data that is encrypted using a public key can only be decrypted using the corresponding private key. 
+Rather than using a single secret-key, assymetric (public key) encryption requires a *keypair*, consisting of a *public key* for encryption and a *private-key* for decryption. Data that is encrypted using a given public key can only be decrypted using the corresponding private key. 
 
 The public key is not confidential and can be shared on e.g. a website or keyserver. This allows anyone to send somebody a secure message by encrypting it with the receivers public key. The encrypted message will only be readable by the owner of the corresponding private key.
 
