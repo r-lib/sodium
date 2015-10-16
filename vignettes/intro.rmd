@@ -128,7 +128,7 @@ stopifnot(identical(out, msg))
 
 Public key authentication works the other way around. First, the owner of the private key creates a 'signature' (an authenticated checksum) for a message in a way that allows anyone who knows his/her public key to verify the integrity of the message and identity of the sender.
 
-Currently sodium requires a different type of key pairfor signatures (ed25519) than for encryption (curve25519).
+Currently sodium requires a different type of key-pair for signatures (ed25519) than for encryption (curve25519).
 
 ```{r}
 # Generate signature keypair
