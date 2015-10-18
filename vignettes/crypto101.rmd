@@ -29,7 +29,7 @@ Now that we got this is out of the way, let's start hacking :)
 
 ### The XOR operator 
 
-The logical [XOR operator](https://en.wikipedia.org/wiki/Exclusive_or#Truth_table) outputs `true` only when both inputs differ (one is `true`, the other is `false`). It is sometimes called an *invertor* because the output of `x` gets inverted if and only if `y` is true:
+The bitwise [XOR operator](https://en.wikipedia.org/wiki/Exclusive_or#Truth_table) outputs `true` only when both inputs differ (one is `true`, the other is `false`). It is sometimes called an *invertor* because the output of a bit in `x` gets inverted if and only if the corresponding bit in `y` is true:
 
 ```{r}
 # XOR two (8bit) bytes 'x' and 'y'
@@ -61,7 +61,7 @@ This method is perfectly secure and forms the basis for most cryptograhpic metho
 
 ### Stream ciphers
 
-A *stream cipher* generates a unique stream of pseudo-random data based on a secret `key` and a unique `nonce`. For a given set of parameters the stream cipher always generates the same stream of data. Sodium implements a few popular stream ciphers:
+The solution to this problem are stream ciphers. A *stream cipher* generates a unique stream of pseudo-random data based on a secret `key` and a unique `nonce`. For a given set of parameters the stream cipher always generates the same stream of data. Sodium implements a few popular stream ciphers:
 
 ```{r}
 password <- "My secret passphrase"
