@@ -17,8 +17,14 @@
 
 ## Getting Started
 
+About the R package:
+
  - [Introduction to Sodium for R ](https://cran.r-project.org/web/packages/sodium/vignettes/intro.html)
  - [How does cryptography work](https://cran.r-project.org/web/packages/sodium/vignettes/crypto101.html)
+
+Other resources:
+
+ - [The Sodium crypto library (libsodium)](https://download.libsodium.org/doc/)
 
 
 ## Hello World
@@ -46,7 +52,7 @@ Binary packages for __OS-X__ or __Windows__ can be installed directly from CRAN:
 install.packages("sodium")
 ```
 
-Installation from source on Linux or OSX requires [`libsodium`](http://packages.ubuntu.com/xenial/libsodium-dev). On __Ubuntu 14.04 or lower__:
+Installation from source on Linux or OSX requires [`libsodium`](https://download.libsodium.org/doc/). On __Ubuntu 14.04 or lower__:
 
 ```
 sudo add-apt-repository -y ppa:chris-lea/libsodium
