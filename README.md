@@ -15,7 +15,7 @@
   which has become very popular after it was discovered that the NSA had
   backdoored Dual EC DRBG.
 
-## Getting Started
+## Documentation
 
 About the R package:
 
