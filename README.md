@@ -52,7 +52,9 @@ Binary packages for __OS-X__ or __Windows__ can be installed directly from CRAN:
 install.packages("sodium")
 ```
 
-Installation from source on Linux or OSX requires [`libsodium`](https://download.libsodium.org/doc/). On __Ubuntu 14.04 or lower__:
+Installation from source on Linux or OSX requires [`libsodium`](https://download.libsodium.org/doc/). 
+
+On __Ubuntu 14.04 or lower__ use [libsodium-dev from launchpad](https://launchpad.net/~chris-lea/+archive/ubuntu/libsodium):
 
 ```
 sudo add-apt-repository -y ppa:chris-lea/libsodium
@@ -60,26 +62,26 @@ sudo apt-get update -q
 sudo apt-get install -y libsodium-dev
 ```
 
-More __recent Debian or Ubuntu__ install directly from Universe:
+More __recent Debian or Ubuntu__ install [libsodium-dev](https://packages.debian.org/testing/libsodium-dev) directly from Universe:
 
 ```
 sudo apt-get install -y libsodium-dev
 ```
 
-On __Fedora__:
+On __Fedora__ we need [libsodium-devel](https://apps.fedoraproject.org/packages/libsodium-devel):
 
 ```
 sudo yum install libsodium-devel
 ````
 
-On __CentOS / RHEL__ we install from EPEL:
+On __CentOS / RHEL__ we install from [libsodium-devel](https://dl.fedoraproject.org/pub/epel/6/x86_64/repoview/libsodium-devel.html) from EPEL:
 
 ```
 sudo yum install epel-release
 sudo yum install libsodium-devel
 ```
 
-On __OS-X__ use Homebrew:
+On __OS-X__ use [libsodium](https://github.com/Homebrew/homebrew-core/blob/master/Formula/libsodium.rb) from Homebrew:
 
 ```
 brew install libsodium
