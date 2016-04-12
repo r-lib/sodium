@@ -52,9 +52,7 @@ Binary packages for __OS-X__ or __Windows__ can be installed directly from CRAN:
 install.packages("sodium")
 ```
 
-Installation from source on Linux or OSX requires [`libsodium`](https://download.libsodium.org/doc/). 
-
-On __Ubuntu 14.04 or lower__ use [libsodium-dev from launchpad](https://launchpad.net/~chris-lea/+archive/ubuntu/libsodium):
+Installation from source on Linux or OSX requires [`libsodium`](https://download.libsodium.org/doc/). On __Ubuntu 14.04 or lower__ use [libsodium-dev from launchpad](https://launchpad.net/~chris-lea/+archive/ubuntu/libsodium):
 
 ```
 sudo add-apt-repository -y ppa:chris-lea/libsodium
