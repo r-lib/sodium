@@ -56,5 +56,5 @@ sudo yum install libsodium-devel
 OS-X with Homebrew:
 
 ```
-brew install sodium
+brew install libsodium
 ```
