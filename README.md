@@ -26,7 +26,7 @@ Binary packages for OS-X or Windows can be installed directly from CRAN:
 install.packages("sodium")
 ```
 
-To install on Linux or OSX from source you need [`libsodium`](http://packages.ubuntu.com/xenial/libsodium-dev). On Ubuntu 14.04 or lower:
+Installation from source on Linux or OSX requires [`libsodium`](http://packages.ubuntu.com/xenial/libsodium-dev). On Ubuntu 14.04 or lower:
 
 ```
 sudo add-apt-repository -y ppa:chris-lea/libsodium
