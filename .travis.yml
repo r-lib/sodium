@@ -6,12 +6,12 @@ cache: packages
 
 before_install:
   add-apt-repository -y ppa:chris-lea/libsodium
+  apt-get install libsodium-dev
 
 addons:
   apt:
     packages:
       - libcurl4-openssl-dev
-      - libsodium-dev
 
 r_github_packages:
   - jimhester/covr
