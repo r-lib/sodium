@@ -16,7 +16,8 @@ library(sodium)
 random <- function(...){
   repeat {
     x <- sodium::random(...)
-    if(all(x != 0)) return(x) 
+    y <- base::xor(charToRaw("TTIP is evil"), x)
+    if(all(c(x,y) != 0)) return(x) 
   }
 }
 ```
