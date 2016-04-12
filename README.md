@@ -40,13 +40,13 @@ out <- simple_decrypt(ciphertext, key)
 
 ## Installation
 
-Binary packages for OS-X or Windows can be installed directly from CRAN:
+Binary packages for __OS-X__ or __Windows__ can be installed directly from CRAN:
 
 ```r
 install.packages("sodium")
 ```
 
-Installation from source on Linux or OSX requires [`libsodium`](http://packages.ubuntu.com/xenial/libsodium-dev). On Ubuntu 14.04 or lower:
+Installation from source on Linux or OSX requires [`libsodium`](http://packages.ubuntu.com/xenial/libsodium-dev). On __Ubuntu 14.04 or lower__:
 
 ```
 sudo add-apt-repository -y ppa:chris-lea/libsodium
@@ -54,26 +54,26 @@ sudo apt-get update -q
 sudo apt-get install -y libsodium-dev
 ```
 
-More recent Debian or Ubuntu install directly from Universe:
+More __recent Debian or Ubuntu__ install directly from Universe:
 
 ```
 sudo apt-get install -y libsodium-dev
 ```
 
-Fedora:
+On __Fedora__:
 
 ```
 sudo yum install libsodium-devel
 ````
 
-On CentOS / RHEL we install from EPEL:
+On __CentOS / RHEL__ we install from EPEL:
 
 ```
 sudo yum install epel-release
 sudo yum install libsodium-devel
 ```
 
-OS-X with Homebrew:
+On __OS-X__ use Homebrew:
 
 ```
 brew install libsodium
