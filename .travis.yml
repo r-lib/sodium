@@ -1,0 +1,27 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: R
+sudo: true
+cache: packages
+
+before_install:
+  add-apt-repository -y ppa:chris-lea/libsodium
+
+addons:
+  apt:
+    packages:
+      - libcurl4-openssl-dev
+
+r_github_packages:
+  - jimhester/covr
+
+warnings_are_errors: true
+#r_check_revdep: true
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+
+after_success:
+  - Rscript -e 'covr::codecov()'
