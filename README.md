@@ -16,3 +16,45 @@
   backdoored Dual EC DRBG.
 
 Have a look at the [vignette](https://cran.r-project.org/web/packages/sodium/vignettes/intro.html) to get started!
+
+
+## Installation
+
+Binary packages for OS-X or Windows can be installed directly from CRAN:
+
+```r
+install.packages("sodium")
+```
+
+To install on Linux or OSX from source you need [`libsodium`](http://packages.ubuntu.com/xenial/libsodium-dev). On Ubuntu 14.04 or lower:
+
+```
+sudo add-apt-repository -y ppa:chris-lea/libsodium
+sudo apt-get update -q
+sudo apt-get install -y libsodium-dev
+```
+
+More recent Debian or Ubuntu install directly from Universe:
+
+```
+sudo apt-get install -y libsodium-dev
+```
+
+Fedora:
+
+```
+sudo yum install libsodium-devel
+````
+
+On CentOS / RHEL we install from EPEL:
+
+```
+sudo yum install epel-release
+sudo yum install libsodium-devel
+```
+
+OS-X with Homebrew:
+
+```
+brew install sodium
+```
