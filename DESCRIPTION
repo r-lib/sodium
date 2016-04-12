@@ -10,7 +10,7 @@ Description: Bindings to libsodium: a modern, easy-to-use software library for
     which has become very popular after it was discovered that the NSA had
     backdoored Dual EC DRBG.
 License: MIT + file LICENSE
-URL: https://github.com/jeroenooms/sodium https://download.libsodium.org/doc/
+URL: https://github.com/jeroenooms/sodium#readme
 BugReports: https://github.com/jeroenooms/sodium/issues
 SystemRequirements: libsodium (>= 1.0.3)
 VignetteBuilder: knitr
