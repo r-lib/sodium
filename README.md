@@ -72,7 +72,7 @@ On __Fedora__ we need [libsodium-devel](https://apps.fedoraproject.org/packages/
 sudo yum install libsodium-devel
 ````
 
-On __CentOS / RHEL__ we install from [libsodium-devel](https://dl.fedoraproject.org/pub/epel/6/x86_64/repoview/libsodium-devel.html) from EPEL:
+On __CentOS / RHEL__ we install from [libsodium-devel](https://dl.fedoraproject.org/pub/epel/7/x86_64/repoview/libsodium-devel.html) from EPEL:
 
 ```
 sudo yum install epel-release
