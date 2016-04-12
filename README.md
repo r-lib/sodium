@@ -23,8 +23,6 @@
 
 ## Hello World
 
-Example of public-key encryption:
-
 ```r
 # Generate keypair:
 key <- keygen()
