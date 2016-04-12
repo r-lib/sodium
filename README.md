@@ -19,8 +19,8 @@
 
 About the R package:
 
- - [Introduction to Sodium for R ](https://cran.r-project.org/web/packages/sodium/vignettes/intro.html)
- - [How does cryptography work](https://cran.r-project.org/web/packages/sodium/vignettes/crypto101.html)
+ - [Introduction to Sodium for R (vignette) ](https://cran.r-project.org/web/packages/sodium/vignettes/intro.html)
+ - [How does cryptography work (vignette)](https://cran.r-project.org/web/packages/sodium/vignettes/crypto101.html)
 
 Other resources:
 
