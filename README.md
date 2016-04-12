@@ -15,7 +15,29 @@
   which has become very popular after it was discovered that the NSA had
   backdoored Dual EC DRBG.
 
-Have a look at the [vignette](https://cran.r-project.org/web/packages/sodium/vignettes/intro.html) to get started!
+## Getting Started
+
+ - [Introduction to Sodium for R ](https://cran.r-project.org/web/packages/sodium/vignettes/intro.html)
+ - [How does cryptography work](https://cran.r-project.org/web/packages/sodium/vignettes/crypto101.html)
+
+
+## Hello World
+
+Example of public-key encryption:
+
+```r
+# Generate keypair:
+key <- keygen()
+pub <- pubkey(key)
+
+# Encrypt message with pubkey
+msg <- serialize(iris, NULL)
+ciphertext <- simple_encrypt(msg, pub)
+
+# Decrypt message with private key
+out <- simple_decrypt(ciphertext, key)
+```
+
 
 
 ## Installation
