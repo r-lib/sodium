@@ -1,2 +1,7 @@
+0.3
+ - Update Homebrew URL in configure script
+ - Workaround for random WARNING in vignette for null strings
+ - Add Travis and README file
+
 0.2
  - Add 2 vignettes
