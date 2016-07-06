@@ -4,3 +4,4 @@
 ^windows
 ^\.travis\.yml$
 ^appveyor\.yml$
+^revdep
