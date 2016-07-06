@@ -5,5 +5,4 @@ src/*.o
 src/*.so
 src/*.dll
 src/Makevars
-inst/doc
 revdep/*.rds
