@@ -1,4 +1,4 @@
-0.3
+0.4
  - Update Homebrew URL in configure script
  - Workaround for random WARNING in vignette for null strings
  - Add Travis and README file
