@@ -6,7 +6,7 @@
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jeroenooms/sodium?branch=master&svg=true)](https://ci.appveyor.com/project/jeroenooms/sodium)
 [![Coverage Status](https://codecov.io/github/jeroenooms/sodium/coverage.svg?branch=master)](https://codecov.io/github/jeroenooms/sodium?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/sodium)](http://cran.r-project.org/package=sodium)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sodium)](http://cran.r-project.org/web/packages/sodium/index.html)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sodium)](https://cran.r-project.org/package=sodium)
 [![Github Stars](https://img.shields.io/github/stars/jeroenooms/sodium.svg?style=social&label=Github)](https://github.com/jeroenooms/sodium)
 
 > Bindings to libsodium: a modern, easy-to-use software library for

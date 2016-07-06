@@ -173,13 +173,9 @@ print(str)</code></pre>
 <div id="random-data-generator" class="section level3">
 <h3>Random data generator</h3>
 <p>The <code>random()</code> function generates n bytes of unpredictable data, suitable for creating secret keys.</p>
-<pre class="r"><code>secret &lt;- random(8)</code></pre>
-<pre><code>Warning in x | y: longer object length is not a multiple of shorter object
-length</code></pre>
-<pre><code>Warning in x &amp; y: longer object length is not a multiple of shorter object
-length</code></pre>
-<pre class="r"><code>print(secret)</code></pre>
-<pre><code>[1] e7 b5 d7 26 bf fc d1 f8</code></pre>
+<pre class="r"><code>secret &lt;- random(8)
+print(secret)</code></pre>
+<pre><code>[1] e1 62 12 87 4f 2e f8 d0</code></pre>
 <p>Implementation is platform specific, see the <a href="https://download.libsodium.org/doc/generating_random_data/index.html">docs</a> for details.</p>
 </div>
 <div id="hash-functions" class="section level3">
@@ -251,9 +247,9 @@ pubkey &lt;- sig_pubkey(key)
 msg &lt;- serialize(iris, NULL)
 sig &lt;- sig_sign(msg, key)
 print(sig)</code></pre>
-<pre><code> [1] e2 63 6f 87 2a bb 56 84 50 4c 59 d9 31 dc 13 aa b3 e8 eb 5a 5d 69 94
-[24] 29 5c c8 7e cc 61 47 3f 97 51 ed 1c 92 ed 37 37 bc 09 ed fb 84 1f ee
-[47] 88 17 fd 9e 0f bb fb 71 e1 5c 9e 98 5a bc fe e5 d1 0f</code></pre>
+<pre><code> [1] c2 b9 00 d1 7e 63 3f dc 67 03 7d c9 3c d0 b3 78 16 78 79 f5 38 69 e7
+[24] 78 73 be 22 c4 f4 76 b5 8a 42 06 35 62 58 ce 08 94 61 49 88 da 6c e1
+[47] 25 2c 37 81 1f e9 8a cc fd d0 d5 dc a6 a2 57 fd 02 06</code></pre>
 <pre class="r"><code># Verify a signature from public key
 sig_verify(msg, sig, pubkey)</code></pre>
 <pre><code>[1] TRUE</code></pre>

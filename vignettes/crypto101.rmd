@@ -13,9 +13,11 @@ knitr::opts_chunk$set(comment = "")
 library(sodium)
 
 # hack for printable bits 
-random <- function(...){
+random <- function(n = 1){
+  if(n != nchar("TTIP is evil"))
+    return(sodium::random(n))
   repeat {
-    x <- sodium::random(...)
+    x <- sodium::random(n)
     y <- base::xor(charToRaw("TTIP is evil"), x)
     if(all(c(x,y) != 0)) return(x) 
   }
@@ -107,7 +109,7 @@ sha256_ctr(50, key, nonce)
 
 
 
-In practice, you should never write your own ciphers. A lot of [research](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.58.1811&rep=rep1&type=pdf) goes into studying the properties of block ciphers under various modes of operation. In the remainder we just use the standard Sodium ciphers: `chacha20`, `salsa20`, `xsalsa20` or `aes128`. See sodium [documentation](https://download.libsodium.org/doc/advanced/aes-128-ctr.html) for details.
+In practice, you should never write your own ciphers. A lot of [research](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.58.1811&rep=rep1&type=pdf) goes into studying the properties of block ciphers under various modes of operation. In the remainder we just use the standard Sodium ciphers: [`chacha20`](https://download.libsodium.org/libsodium/content/advanced/chacha20.html), [`salsa20`](https://download.libsodium.org/libsodium/content/advanced/salsa20.html), [`xsalsa20`](https://download.libsodium.org/libsodium/content/advanced/xsalsa20.html) or `aes128`.
 
 ### Symmetric encryption
 

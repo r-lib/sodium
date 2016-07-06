@@ -152,7 +152,7 @@ ciphertext &lt;- base::xor(msg, one_time_pad)
 
 # It's really encrypted
 rawToChar(ciphertext)</code></pre>
-<pre><code>[1] &quot;\xc7\024d@cZ\xf75\x93J\034\x81&quot;</code></pre>
+<pre><code>[1] &quot;\x972+\x8b\aDȳ\032\x90E*&quot;</code></pre>
 <pre class="r"><code># Decrypt with same pad
 rawToChar(base::xor(ciphertext, one_time_pad))</code></pre>
 <pre><code>[1] &quot;TTIP is evil&quot;</code></pre>
@@ -163,16 +163,12 @@ rawToChar(base::xor(ciphertext, one_time_pad))</code></pre>
 <p>The solution to this problem are stream ciphers. A <em>stream cipher</em> generates a unique stream of pseudo-random data based on a secret <code>key</code> and a unique <code>nonce</code>. For a given set of parameters the stream cipher always generates the same stream of data. Sodium implements a few popular stream ciphers:</p>
 <pre class="r"><code>password &lt;- &quot;My secret passphrase&quot;
 key &lt;- hash(charToRaw(password))
-nonce &lt;- random(8)</code></pre>
-<pre><code>Warning in x | y: longer object length is not a multiple of shorter object
-length</code></pre>
-<pre><code>Warning in x &amp; y: longer object length is not a multiple of shorter object
-length</code></pre>
-<pre class="r"><code>chacha20(size = 20, key, nonce)</code></pre>
-<pre><code> [1] 12 8c 2c bf 76 c2 77 71 0c 7c 99 07 62 ab 87 c8 f9 fa 2d d4</code></pre>
+nonce &lt;- random(8)
+chacha20(size = 20, key, nonce)</code></pre>
+<pre><code> [1] fe f3 4c 9e 54 f6 64 44 87 b9 d2 fe c7 95 20 5d 2e 04 74 a0</code></pre>
 <p>Each stream requires a <code>key</code> and a <code>nonce</code>. The key forms the shared secret and should only be known to trusted parties. The <code>nonce</code> is not secret and is stored or sent along with the ciphertext. The purpose of the <code>nonce</code> is to make a random stream unique to protect gainst re-use attacks. This way you can re-use a your key to encrypt multiple messages, as long as you never re-use the same nonce.</p>
 <pre class="r"><code>salsa20(size = 20, key, nonce)</code></pre>
-<pre><code> [1] 29 f5 fe 0e f3 6e cf d6 58 95 d7 e6 36 37 69 3b 6e e1 e3 38</code></pre>
+<pre><code> [1] b5 73 71 1b 23 e3 53 81 1c fa 22 50 65 37 c8 d2 53 af ac 48</code></pre>
 <p>Over the years cryptographers have come up with many more variants. Many stream ciphers are based on a block cipher such as <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a>: a keyed permutation of fixed length amount of data. The block ciphers get chained in a particular <a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation">mode of operation</a> which repeatedly applies the cipher’s single-block operation to securely transform amounts of data larger than a block.</p>
 <p>We are not going to discuss implementation details, but you could probably come up with something yourself. For example you could use a hash function such <code>sha256</code> as the block cipher and append counter which is incremented for each block (this is called CTR mode).</p>
 <pre class="r"><code># Illustrative example.
@@ -189,16 +185,12 @@ sha256_ctr &lt;- function(size, key, nonce){
 <p>This allows us to generate an arbitrary length stream from a single secret key:</p>
 <pre class="r"><code>password &lt;- &quot;My secret passphrase&quot;
 key &lt;- hash(charToRaw(password))
-nonce &lt;- random(8)</code></pre>
-<pre><code>Warning in x | y: longer object length is not a multiple of shorter object
-length</code></pre>
-<pre><code>Warning in x &amp; y: longer object length is not a multiple of shorter object
-length</code></pre>
-<pre class="r"><code>sha256_ctr(50, key, nonce)</code></pre>
-<pre><code> [1] 34 46 12 c1 3e d6 f0 fa fa a1 09 5b a8 a2 ad 31 21 9f 8d ce 5a 22 1e
-[24] c1 65 95 22 b3 b8 f0 26 77 43 c6 30 58 a3 47 a0 76 ba 3e 3d 2b 3f 77
-[47] 90 a6 88 00</code></pre>
-<p>In practice, you should never write your own ciphers. A lot of <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.58.1811&amp;rep=rep1&amp;type=pdf">research</a> goes into studying the properties of block ciphers under various modes of operation. In the remainder we just use the standard Sodium ciphers: <code>chacha20</code>, <code>salsa20</code>, <code>xsalsa20</code> or <code>aes128</code>. See sodium <a href="https://download.libsodium.org/doc/advanced/aes-128-ctr.html">documentation</a> for details.</p>
+nonce &lt;- random(8)
+sha256_ctr(50, key, nonce)</code></pre>
+<pre><code> [1] de eb 74 21 cb e7 17 d3 96 01 2e 9d 3a 5f 14 a1 a5 15 43 c2 7d 32 a5
+[24] 2f c5 f6 3e b5 11 1f 9a ae 42 f3 88 d3 c8 17 90 0e e5 6a af 16 1f aa
+[47] 07 31 ef 71</code></pre>
+<p>In practice, you should never write your own ciphers. A lot of <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.58.1811&amp;rep=rep1&amp;type=pdf">research</a> goes into studying the properties of block ciphers under various modes of operation. In the remainder we just use the standard Sodium ciphers: <a href="https://download.libsodium.org/libsodium/content/advanced/chacha20.html"><code>chacha20</code></a>, <a href="https://download.libsodium.org/libsodium/content/advanced/salsa20.html"><code>salsa20</code></a>, <a href="https://download.libsodium.org/libsodium/content/advanced/xsalsa20.html"><code>xsalsa20</code></a> or <code>aes128</code>.</p>
 </div>
 <div id="symmetric-encryption" class="section level3">
 <h3>Symmetric encryption</h3>
@@ -210,12 +202,8 @@ passwd &lt;- charToRaw(&quot;My secret passphrase&quot;)</code></pre>
 <p>A hash function converts the password to a key of suitable size for the stream cipher, which we use to generate a psuedo random stream of equal length to the message:</p>
 <pre class="r"><code># Basic secret key encryption
 key &lt;- hash(passwd)
-nonce8 &lt;- random(8)</code></pre>
-<pre><code>Warning in x | y: longer object length is not a multiple of shorter object
-length</code></pre>
-<pre><code>Warning in x &amp; y: longer object length is not a multiple of shorter object
-length</code></pre>
-<pre class="r"><code>stream &lt;- chacha20(length(message), key, nonce8)
+nonce8 &lt;- random(8)
+stream &lt;- chacha20(length(message), key, nonce8)
 ciphertext &lt;- base::xor(stream, message)</code></pre>
 <p>Now the <code>ciphertext</code> is an encrypted version of the message. Only those that know the <code>key</code> and the <code>nonce</code> can re-generate the same keystream in order to <code>xor</code> the ciphertext back into the original message.</p>
 <pre class="r"><code># Decrypt with the same key
