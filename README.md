@@ -84,3 +84,12 @@ On __OS-X__ use [libsodium](https://github.com/Homebrew/homebrew-core/blob/maste
 ```
 brew install libsodium
 ```
+
+On __Solaris 10__ we can have [libsodium_dev](https://www.opencsw.org/packages/CSWlibsodium-dev/) from [OpenCSW](https://www.opencsw.org/):
+```
+pkgadd -d http://get.opencsw.org/now
+/opt/csw/bin/pkgutil -U
+/opt/csw/bin/pkgutil -y -i libsodium_dev 
+/usr/sbin/pkgchk -L CSWlibsodium-dev # list files
+```
+
