@@ -2,12 +2,12 @@
 
 ##### *A Modern and Easy-to-Use Crypto Library*
 
-[![Build Status](https://travis-ci.org/jeroenooms/sodium.svg?branch=master)](https://travis-ci.org/jeroenooms/sodium)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jeroenooms/sodium?branch=master&svg=true)](https://ci.appveyor.com/project/jeroenooms/sodium)
-[![Coverage Status](https://codecov.io/github/jeroenooms/sodium/coverage.svg?branch=master)](https://codecov.io/github/jeroenooms/sodium?branch=master)
+[![Build Status](https://travis-ci.org/jeroen/sodium.svg?branch=master)](https://travis-ci.org/jeroen/sodium)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jeroen/sodium?branch=master&svg=true)](https://ci.appveyor.com/project/jeroen/sodium)
+[![Coverage Status](https://codecov.io/github/jeroen/sodium/coverage.svg?branch=master)](https://codecov.io/github/jeroen/sodium?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/sodium)](http://cran.r-project.org/package=sodium)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sodium)](https://cran.r-project.org/package=sodium)
-[![Github Stars](https://img.shields.io/github/stars/jeroenooms/sodium.svg?style=social&label=Github)](https://github.com/jeroenooms/sodium)
+[![Github Stars](https://img.shields.io/github/stars/jeroen/sodium.svg?style=social&label=Github)](https://github.com/jeroen/sodium)
 
 > Bindings to libsodium: a modern, easy-to-use software library for
   encryption, decryption, signatures, password hashing and more. Sodium uses
