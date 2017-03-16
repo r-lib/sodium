@@ -24,7 +24,7 @@ r_github_packages:
 addons:
   apt:
     sources:
-      - chris-lea/libsodium
+      - sourceline: 'ppa:chris-lea/libsodium'
     packages:
       - libsodium-dev
       - valgrind
