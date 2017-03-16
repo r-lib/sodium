@@ -35,7 +35,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     BREWDIR=$(brew --prefix)
   else
     echo "Auto-brewing $PKG_BREW_NAME..."
-    BREWDIR="/tmp/homebrew"
+    BREWDIR=$TMPDIR/homebrew
     rm -Rf $BREWDIR
     mkdir -p $BREWDIR
     curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C $BREWDIR
