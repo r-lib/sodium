@@ -1,3 +1,6 @@
+1.0
+ - Autobrew script moved to separate repo
+
 0.4
  - Update Homebrew URL in configure script
  - Workaround for random WARNING in vignette for null strings

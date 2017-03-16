@@ -1,7 +1,7 @@
 Package: sodium
 Type: Package
 Title: A Modern and Easy-to-Use Crypto Library
-Version: 0.4
+Version: 1.0
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
 Description: Bindings to libsodium: a modern, easy-to-use software library for
