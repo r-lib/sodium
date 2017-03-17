@@ -35,8 +35,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     BREWDIR=$(brew --prefix)
   else
     # autobrew in /tmp
-    curl -OL https://jeroen.github.io/autobrew/sodium.sh
-    source sodium.sh
+    curl -sOL https://jeroen.github.io/autobrew/sodium
+    source sodium
   fi
   PKG_CFLAGS="-I$BREWDIR/opt/$PKG_BREW_NAME/include"
   PKG_LIBS="-L$BREWDIR/opt/$PKG_BREW_NAME/lib $PKG_LIBS"
