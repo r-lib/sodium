@@ -1,5 +1,5 @@
 #!/bin/bash
-# Anticonf (tm) script by Jeroen Ooms (2015)
+# Anticonf (tm) script by Jeroen Ooms (2017)
 # This script will query 'pkg-config' for the required cflags and ldflags.
 # If pkg-config is unavailable or does not find the library, try setting
 # INCLUDE_DIR and LIB_DIR manually via e.g:
@@ -35,8 +35,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     BREWDIR=$(brew --prefix)
   else
     # autobrew in /tmp
-    curl -sOL https://jeroen.github.io/autobrew/sodium
-    source sodium
+    curl -sfL "https://jeroen.github.io/autobrew/$PKG_BREW_NAME" > $TMPDIR/autobrew
+    source $TMPDIR/autobrew
   fi
   PKG_CFLAGS="-I$BREWDIR/opt/$PKG_BREW_NAME/include"
   PKG_LIBS="-L$BREWDIR/opt/$PKG_BREW_NAME/lib $PKG_LIBS"
