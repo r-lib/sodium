@@ -1,6 +1,7 @@
 1.0
  - Remove the deprecated aes128()
- - Autobrew script moved to separate repo
+ - Windows: update libsodium to 1.0.12
+ - OSX: autobrew script moved to separate repo
 
 0.4
  - Update Homebrew URL in configure script
