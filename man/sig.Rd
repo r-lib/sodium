@@ -2,11 +2,11 @@
 % Please edit documentation in R/signatures.R
 \name{Signatures}
 \alias{Signatures}
+\alias{sig_sign}
 \alias{sig}
+\alias{sig_verify}
 \alias{sig_keygen}
 \alias{sig_pubkey}
-\alias{sig_sign}
-\alias{sig_verify}
 \title{Create and Verify Signatures}
 \usage{
 sig_sign(msg, key)
@@ -62,4 +62,3 @@ sig_verify(msg, sig, pubkey)
 \references{
 \url{http://doc.libsodium.org/public-key_cryptography/public-key_signatures.html}
 }
-

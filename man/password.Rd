@@ -2,8 +2,8 @@
 % Please edit documentation in R/password.R
 \name{Password storage}
 \alias{Password storage}
-\alias{password}
 \alias{password_store}
+\alias{password}
 \alias{password_verify}
 \title{Password Storage}
 \usage{
@@ -39,4 +39,3 @@ stopifnot(password_verify(hash, password))
 \references{
 \url{http://doc.libsodium.org/password_hashing/}
 }
-

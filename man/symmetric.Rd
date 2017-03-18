@@ -2,8 +2,8 @@
 % Please edit documentation in R/data-encrypt.R
 \name{Symmetric encryption}
 \alias{Symmetric encryption}
-\alias{data_decrypt}
 \alias{data_encrypt}
+\alias{data_decrypt}
 \alias{data_tag}
 \title{Symmetric Encryption and Tagging}
 \usage{
@@ -61,4 +61,3 @@ tag <- data_tag(msg, key)
 \references{
 \url{https://download.libsodium.org/doc/secret-key_cryptography/authenticated_encryption.html}
 }
-

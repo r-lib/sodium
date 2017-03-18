@@ -2,8 +2,8 @@
 % Please edit documentation in R/simple-encrypt.R
 \name{Simple encryption}
 \alias{Simple encryption}
-\alias{simple_decrypt}
 \alias{simple_encrypt}
+\alias{simple_decrypt}
 \title{Anonymous Public-key Encryption (Sealed Box)}
 \usage{
 simple_encrypt(msg, pubkey)
@@ -47,4 +47,3 @@ stopifnot(identical(out, msg))
 \references{
 \url{http://doc.libsodium.org/public-key_cryptography/sealed_boxes.html}
 }
-

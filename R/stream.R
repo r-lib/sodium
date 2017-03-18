@@ -49,8 +49,6 @@
 #' stream <- salsa20(10000, key, nonce8)
 #' stream <- xsalsa20(10000, key, random(24))
 #'
-#' shortkey <- hash(passwd, size = 16)
-#' stream <- aes128(10000, shortkey, random(16))
 chacha20 <- function(size, key, nonce){
   stopifnot(is.numeric(size))
   stopifnot(is.raw(key))
@@ -76,14 +74,4 @@ xsalsa20 <- function(size, key, nonce){
   stopifnot(is.raw(key))
   stopifnot(is.raw(nonce))
   .Call(R_stream_xsalsa20, size, key, nonce)
-}
-
-#' @export
-#' @useDynLib sodium R_stream_aes128ctr
-#' @rdname stream
-aes128 <- function(size, key, nonce){
-  stopifnot(is.numeric(size))
-  stopifnot(is.raw(key))
-  stopifnot(is.raw(nonce))
-  .Call(R_stream_aes128ctr, size, key, nonce)
 }

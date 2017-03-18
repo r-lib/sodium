@@ -2,8 +2,8 @@
 % Please edit documentation in R/diffie-hellman.R
 \name{Diffie-Hellman}
 \alias{Diffie-Hellman}
-\alias{diffie}
 \alias{diffie_hellman}
+\alias{diffie}
 \title{Diffie-Hellman}
 \usage{
 diffie_hellman(key, pubkey)
@@ -57,4 +57,3 @@ stopifnot(identical(alice_secret, bob_secret))
 \references{
 \url{http://doc.libsodium.org/advanced/scalar_multiplication.html}
 }
-

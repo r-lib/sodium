@@ -54,4 +54,3 @@ ciphertext <- simple_encrypt(msg, pub)
 out <- simple_decrypt(ciphertext, key)
 stopifnot(identical(msg, out))
 }
-

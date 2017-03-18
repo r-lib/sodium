@@ -5,9 +5,9 @@
 \alias{hash}
 \alias{hashing}
 \alias{scrypt}
-\alias{sha256}
-\alias{sha512}
 \alias{shorthash}
+\alias{sha512}
+\alias{sha256}
 \title{Hash Functions}
 \usage{
 hash(buf, key = NULL, size = 32)
@@ -76,4 +76,3 @@ sha512(msg, key = longkey)
 \references{
 \url{https://download.libsodium.org/doc/hashing/generic_hashing.html}
 }
-

@@ -2,10 +2,9 @@
 % Please edit documentation in R/stream.R
 \name{Stream ciphers}
 \alias{Stream ciphers}
-\alias{aes128}
 \alias{chacha20}
-\alias{salsa20}
 \alias{stream}
+\alias{salsa20}
 \alias{xsalsa20}
 \title{Stream Ciphers}
 \usage{
@@ -14,8 +13,6 @@ chacha20(size, key, nonce)
 salsa20(size, key, nonce)
 
 xsalsa20(size, key, nonce)
-
-aes128(size, key, nonce)
 }
 \arguments{
 \item{size}{length of cipher stream in bytes}
@@ -67,10 +64,7 @@ stopifnot(identical(out, message))
 stream <- salsa20(10000, key, nonce8)
 stream <- xsalsa20(10000, key, random(24))
 
-shortkey <- hash(passwd, size = 16)
-stream <- aes128(10000, shortkey, random(16))
 }
 \references{
 \url{https://download.libsodium.org/doc/advanced/xsalsa20.html}
 }
-

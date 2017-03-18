@@ -2,8 +2,8 @@
 % Please edit documentation in R/auth-encrypt.R
 \name{Authenticated encryption}
 \alias{Authenticated encryption}
-\alias{auth_decrypt}
 \alias{auth_encrypt}
+\alias{auth_decrypt}
 \title{Authenticated Encryption}
 \usage{
 auth_encrypt(msg, key, pubkey, nonce = random(24))
@@ -67,4 +67,3 @@ stopifnot(identical(out, msg))
 \references{
 \url{http://doc.libsodium.org/public-key_cryptography/authenticated_encryption.html}
 }
-

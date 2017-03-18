@@ -7,7 +7,6 @@
 [![Coverage Status](https://codecov.io/github/jeroen/sodium/coverage.svg?branch=master)](https://codecov.io/github/jeroen/sodium?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/sodium)](http://cran.r-project.org/package=sodium)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sodium)](https://cran.r-project.org/package=sodium)
-[![Github Stars](https://img.shields.io/github/stars/jeroen/sodium.svg?style=social&label=Github)](https://github.com/jeroen/sodium)
 
 > Bindings to libsodium: a modern, easy-to-use software library for
   encryption, decryption, signatures, password hashing and more. Sodium uses
