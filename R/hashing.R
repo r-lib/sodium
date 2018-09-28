@@ -3,7 +3,7 @@
 #' Functions to calculate cryptographic hash of a message, with optionally a key for
 #' HMAC applications. For storing passwords, use \link{password_store} instead.
 #'
-#' The generic \code{hash} function is recommended most most applications. It uses
+#' The generic \code{hash} function is recommended for most applications. It uses
 #' dynamic length
 #' \href{https://download.libsodium.org/doc/hashing/generic_hashing.html}{BLAKE2b}
 #' where output size can be any value between 16 bytes (128bit) and 64 bytes (512bit).
