@@ -41,3 +41,4 @@ x2 <- paste(test, collapse = ":")
 y2 <- hex2bin(x2, ignore = ":")
 stopifnot(identical(test, y2))
 }
+\concept{sodium}

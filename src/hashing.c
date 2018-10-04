@@ -83,3 +83,23 @@ SEXP R_pwhash(SEXP buf, SEXP salt, SEXP size){
     Rf_error("pwhash failed");
   return res;
 }
+
+SEXP R_pwhash_argon2(SEXP buf, SEXP salt, SEXP size){
+// Libsodium version needs to be at least 1.0.9 (aka 9.2)
+#if (SODIUM_LIBRARY_VERSION_MAJOR > 9 || \
+      SODIUM_LIBRARY_VERSION_MAJOR == 9 && SODIUM_LIBRARY_VERSION_MINOR >= 2)
+  int outlen = asInteger(size);
+  if(LENGTH(salt) != crypto_pwhash_SALTBYTES)
+    Rf_error("Invalid salt, must be exactly %d bytes", crypto_pwhash_SALTBYTES);
+  SEXP res = allocVector(RAWSXP, outlen);
+  if(crypto_pwhash(RAW(res), outlen, (char*) RAW(buf), LENGTH(buf), RAW(salt),
+                   crypto_pwhash_OPSLIMIT_INTERACTIVE,
+                   crypto_pwhash_MEMLIMIT_INTERACTIVE,
+                   crypto_pwhash_ALG_ARGON2I13))
+    Rf_error("pwhash failed");
+  return res;
+#else
+  Rf_error("Argon2 is only supported in libdsodium >= 1.0.9.");
+  return 0;
+#endif
+}

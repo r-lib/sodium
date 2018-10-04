@@ -12,6 +12,10 @@
 #' against brute force attacks. This algorithm is also used by the \link{password_store}
 #' function.
 #'
+#' The \link{argon2} hash function is also designed to be CPU and memory expensive to protect
+#' against brute force attacks. Argon2 is a password-hashing function that summarizes the
+#' state of the art in the design of memory-hard functions
+#'
 #' The \code{shorthash} function is a special 8 byte (64 bit) hash based on
 #' \href{https://download.libsodium.org/doc/hashing/short-input_hashing.html}{SipHash-2-4}.
 #' The output of this function is only 64 bits (8 bytes). It is useful for in e.g.
@@ -63,6 +67,17 @@ scrypt <- function(buf, salt = raw(32), size = 32){
   stopifnot(is.raw(salt))
   stopifnot(is.numeric(size))
   .Call(R_pwhash, buf, salt, size)
+}
+
+#' @export
+#' @rdname hash
+#' @param salt non-confidential random data to seed the algorithm
+#' @useDynLib sodium R_pwhash_argon2
+argon2 <- function(buf, salt = raw(16), size = 32){
+  stopifnot(is.raw(buf))
+  stopifnot(is.raw(salt))
+  stopifnot(is.numeric(size))
+  .Call(R_pwhash_argon2, buf, salt, size)
 }
 
 #' @export
