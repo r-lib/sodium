@@ -71,7 +71,6 @@ scrypt <- function(buf, salt = raw(32), size = 32){
 
 #' @export
 #' @rdname hash
-#' @param salt non-confidential random data to seed the algorithm
 #' @useDynLib sodium R_pwhash_argon2
 argon2 <- function(buf, salt = raw(16), size = 32){
   stopifnot(is.raw(buf))

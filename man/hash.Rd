@@ -31,8 +31,6 @@ sha256(buf, key = NULL)
 \item{size}{length of the output hash. Must be between 16 and 64 (recommended is 32)}
 
 \item{salt}{non-confidential random data to seed the algorithm}
-
-\item{salt}{non-confidential random data to seed the algorithm}
 }
 \description{
 Functions to calculate cryptographic hash of a message, with optionally a key for
