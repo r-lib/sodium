@@ -30,6 +30,9 @@ memcmp(buf1, buf2)
 
 \item{buf2}{data2 to be compared}
 }
+\value{
+\code{memcmp} returns TRUE if both arguments are equal, otherwise FALSE.
+}
 \description{
 The functions \code{bin2hex} and \code{hex2bin} convert between binary (raw)
 vectors and corresponding string in hexadecimal notation. The \code{random}

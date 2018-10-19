@@ -68,6 +68,7 @@ xor <- function(x, y){
 #' @param buf1 data1 to be compared
 #' @param buf2 data2 to be compared
 #' @useDynLib sodium R_sodium_memcmp
+#' @return \code{memcmp} returns TRUE if both arguments are equal, otherwise FALSE.
 #' @export
 #' @rdname helpers
 memcmp <- function(buf1, buf2){
