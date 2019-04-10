@@ -4,7 +4,6 @@
 
 [![Build Status](https://travis-ci.org/jeroen/sodium.svg?branch=master)](https://travis-ci.org/jeroen/sodium)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jeroen/sodium?branch=master&svg=true)](https://ci.appveyor.com/project/jeroen/sodium)
-[![Coverage Status](https://codecov.io/github/jeroen/sodium/coverage.svg?branch=master)](https://codecov.io/github/jeroen/sodium?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/sodium)](http://cran.r-project.org/package=sodium)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sodium)](https://cran.r-project.org/package=sodium)
 
