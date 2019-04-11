@@ -15,8 +15,8 @@ matrix:
 
 # PPA is only needed for (legacy) Trusty. Can be removed when Trusty is EOL.
 addons:
-  sources:
-    - sourceline: 'ppa:chris-lea/libsodium'
   apt:
+    sources:
+    - sourceline: 'ppa:chris-lea/libsodium'
     packages:
       - libsodium-dev
