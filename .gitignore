@@ -7,3 +7,4 @@ src/*.dll
 src/Makevars
 revdep/*.rds
 windows
+configure.log

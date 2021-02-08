@@ -6,3 +6,4 @@
 ^appveyor\.yml$
 ^revdep
 ^README.md$
+configure.log

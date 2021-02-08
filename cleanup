@@ -1,2 +1,2 @@
 #!/bin/sh
-rm -f src/Makevars autobrew
+rm -f src/Makevars autobrew configure.log

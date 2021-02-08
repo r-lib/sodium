@@ -18,4 +18,4 @@ VignetteBuilder: knitr
 Suggests:
     knitr,
     rmarkdown
-RoxygenNote: 6.1.0
+RoxygenNote: 7.1.1
