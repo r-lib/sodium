@@ -1,17 +1,17 @@
 # sodium
 
-##### *A Modern and Easy-to-Use Crypto Library*
+> A Modern and Easy-to-Use Crypto Library
 
 [![Build Status](https://travis-ci.org/jeroen/sodium.svg?branch=master)](https://travis-ci.org/jeroen/sodium)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jeroen/sodium?branch=master&svg=true)](https://ci.appveyor.com/project/jeroen/sodium)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/sodium)](http://cran.r-project.org/package=sodium)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sodium)](https://cran.r-project.org/package=sodium)
 
-> Bindings to libsodium: a modern, easy-to-use software library for
-  encryption, decryption, signatures, password hashing and more. Sodium uses
-  curve25519, a state-of-the-art Diffie-Hellman function by Daniel Bernstein,
-  which has become very popular after it was discovered that the NSA had
-  backdoored Dual EC DRBG.
+Bindings to libsodium: a modern, easy-to-use software library for
+encryption, decryption, signatures, password hashing and more. Sodium uses
+curve25519, a state-of-the-art Diffie-Hellman function by Daniel Bernstein,
+which has become very popular after it was discovered that the NSA had
+backdoored Dual EC DRBG.
 
 ## Documentation
 
