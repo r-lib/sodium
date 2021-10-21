@@ -21,7 +21,7 @@ About the R package:
 
 Other resources:
 
- - [The Sodium crypto library (libsodium)](https://download.libsodium.org/doc/)
+ - [The Sodium crypto library (libsodium)](https://doc.libsodium.org/)
 
 
 ## Hello World
@@ -49,15 +49,7 @@ Binary packages for __OS-X__ or __Windows__ can be installed directly from CRAN:
 install.packages("sodium")
 ```
 
-Installation from source on Linux or OSX requires [`libsodium`](https://download.libsodium.org/doc/). On __Ubuntu 14.04 or lower__ use [libsodium-dev](https://launchpad.net/~chris-lea/+archive/ubuntu/libsodium) from Launchpad:
-
-```
-sudo add-apt-repository -y ppa:chris-lea/libsodium
-sudo apt-get update -q
-sudo apt-get install -y libsodium-dev
-```
-
-More __recent Debian or Ubuntu__ install [libsodium-dev](https://packages.debian.org/testing/libsodium-dev) directly from Universe:
+Installation from source on Linux or OSX requires [`libsodium`](https://doc.libsodium.org/). On __Debian or Ubuntu__ install [libsodium-dev](https://packages.debian.org/testing/libsodium-dev):
 
 ```
 sudo apt-get install -y libsodium-dev
