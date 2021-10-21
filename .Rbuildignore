@@ -7,3 +7,4 @@
 ^revdep
 ^README.md$
 configure.log
+^\.github$
