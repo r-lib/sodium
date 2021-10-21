@@ -39,7 +39,7 @@ HMAC applications. For storing passwords, use \link{password_store} instead.
 \details{
 The generic \code{hash} function is recommended for most applications. It uses
 dynamic length
-\href{https://download.libsodium.org/doc/hashing/generic_hashing.html}{BLAKE2b}
+\href{https://doc.libsodium.org/hashing/generic_hashing.html}{BLAKE2b}
 where output size can be any value between 16 bytes (128bit) and 64 bytes (512bit).
 
 The \link{scrypt} hash function is designed to be CPU and memory expensive to protect
@@ -51,7 +51,7 @@ against brute force attacks. Argon2 is a password-hashing function that summariz
 state of the art in the design of memory-hard functions
 
 The \code{shorthash} function is a special 8 byte (64 bit) hash based on
-\href{https://download.libsodium.org/doc/hashing/short-input_hashing.html}{SipHash-2-4}.
+\href{https://doc.libsodium.org/hashing/short-input_hashing.html}{SipHash-2-4}.
 The output of this function is only 64 bits (8 bytes). It is useful for in e.g.
 Hash tables, but it should not be considered collision-resistant.
 
@@ -81,5 +81,5 @@ sha256(msg, key = key)
 sha512(msg, key = longkey)
 }
 \references{
-\url{https://download.libsodium.org/doc/hashing/generic_hashing.html}
+\url{https://doc.libsodium.org/hashing/generic_hashing.html}
 }

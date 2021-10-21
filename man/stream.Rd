@@ -66,5 +66,5 @@ stream <- xsalsa20(10000, key, random(24))
 
 }
 \references{
-\url{https://download.libsodium.org/doc/advanced/xsalsa20.html}
+\url{https://doc.libsodium.org/advanced/xsalsa20.html}
 }

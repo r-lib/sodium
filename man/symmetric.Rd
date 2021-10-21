@@ -59,5 +59,5 @@ stopifnot(identical(msg, orig))
 tag <- data_tag(msg, key)
 }
 \references{
-\url{https://download.libsodium.org/doc/secret-key_cryptography/authenticated_encryption.html}
+\url{https://doc.libsodium.org/secret-key_cryptography/authenticated_encryption.html}
 }

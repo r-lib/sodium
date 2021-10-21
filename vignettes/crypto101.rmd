@@ -109,7 +109,7 @@ sha256_ctr(50, key, nonce)
 
 
 
-In practice, you should never write your own ciphers. A lot of [research](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.58.1811&rep=rep1&type=pdf) goes into studying the properties of block ciphers under various modes of operation. In the remainder we just use the standard Sodium ciphers: [`chacha20`](https://download.libsodium.org/libsodium/content/advanced/chacha20.html), [`salsa20`](https://download.libsodium.org/libsodium/content/advanced/salsa20.html) or  [`xsalsa20`](https://download.libsodium.org/libsodium/content/advanced/xsalsa20.html).
+In practice, you should never write your own ciphers. A lot of [research](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.58.1811&rep=rep1&type=pdf) goes into studying the properties of block ciphers under various modes of operation. In the remainder we just use the standard Sodium ciphers: [`chacha20`](https://doc.libsodium.org/advanced/chacha20.html), [`salsa20`](https://doc.libsodium.org/advanced/salsa20.html) or  [`xsalsa20`](https://doc.libsodium.org/advanced/xsalsa20.html).
 
 ### Symmetric encryption
 

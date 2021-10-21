@@ -122,7 +122,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>The sodium R package provides bindings to <a href="https://download.libsodium.org/doc/">libsodium</a>: a modern, easy-to-use software library for encryption, decryption, signatures, password hashing and more.</p>
+<p>The sodium R package provides bindings to <a href="https://doc.libsodium.org/">libsodium</a>: a modern, easy-to-use software library for encryption, decryption, signatures, password hashing and more.</p>
 <p>The goal of Sodium is to provide the core operations needed to build higher-level cryptographic tools. It is not intended for implementing standardized protocols such as TLS, SSH or GPG. Sodium only supports a limited set of state-of-the-art elliptic curve methods, resulting in a simple but very powerful tool-kit for building secure applications.</p>
 <table>
 <colgroup>
@@ -177,11 +177,11 @@ print(str)</code></pre>
 <pre class="r"><code>secret &lt;- random(8)
 print(secret)</code></pre>
 <pre><code>[1] 90 70 7a fd 1d 39 bc 75</code></pre>
-<p>Implementation is platform specific, see the <a href="https://download.libsodium.org/doc/generating_random_data/index.html">docs</a> for details.</p>
+<p>Implementation is platform specific, see the <a href="https://doc.libsodium.org/generating_random_data/index.html">docs</a> for details.</p>
 </div>
 <div id="hash-functions" class="section level3">
 <h3>Hash functions</h3>
-<p>Sodium has several hash functions including <code>hash()</code>, <code>shorthash()</code>, <code>sha256()</code>, <code>sha512</code> and <code>scrypt()</code>. The generic <code>hash()</code> is usually recommended. It uses <a href="https://download.libsodium.org/doc/hashing/generic_hashing.html">blake2b</a> with a configurable size between 16 bytes (128bit) and 64 bytes (512bit).</p>
+<p>Sodium has several hash functions including <code>hash()</code>, <code>shorthash()</code>, <code>sha256()</code>, <code>sha512</code> and <code>scrypt()</code>. The generic <code>hash()</code> is usually recommended. It uses <a href="https://doc.libsodium.org/hashing/generic_hashing.html">blake2b</a> with a configurable size between 16 bytes (128bit) and 64 bytes (512bit).</p>
 <pre class="r"><code># Generate keys from passphrase
 passphrase &lt;- charToRaw(&quot;This is super secret&quot;)
 hash(passphrase)</code></pre>
@@ -193,7 +193,7 @@ hash(passphrase)</code></pre>
 <pre><code> [1] d0 89 68 30 26 1d 1b 85 76 dc ad 20 c9 58 0a fb b1 d0 62 ba 10 d6 80
 [24] f6 cb c6 ae 2d 42 57 ee a0 65 fd b0 e8 90 02 ae b3 e0 4f 88 df ba ea
 [47] 26 bb 47 3f 29 5a a4 06 cd b8 05 78 83 31 66 dc 7b 24</code></pre>
-<p>The <code>shorthash()</code> function is a special 8 byte (64 bit) hash based on <a href="https://download.libsodium.org/doc/hashing/short-input_hashing.html">SipHash-2-4</a>. The output of this function is only 64 bits (8 bytes). It is useful for in e.g. Hash tables, but it should not be considered collision-resistant.</p>
+<p>The <code>shorthash()</code> function is a special 8 byte (64 bit) hash based on <a href="https://doc.libsodium.org/hashing/short-input_hashing.html">SipHash-2-4</a>. The output of this function is only 64 bits (8 bytes). It is useful for in e.g. Hash tables, but it should not be considered collision-resistant.</p>
 </div>
 <div id="secret-key-encryption" class="section level3">
 <h3>Secret key encryption</h3>

@@ -15,7 +15,7 @@ knitr::opts_chunk$set(comment = "")
 library(sodium)
 ```
 
-The sodium R package provides bindings to [libsodium](https://download.libsodium.org/doc/): a modern, easy-to-use software library for encryption, decryption, signatures, password hashing and more. 
+The sodium R package provides bindings to [libsodium](https://doc.libsodium.org/): a modern, easy-to-use software library for encryption, decryption, signatures, password hashing and more. 
 
 The goal of Sodium is to provide the core operations needed to build higher-level cryptographic tools. It is not intended for implementing standardized protocols such as TLS, SSH or GPG. Sodium only supports a limited set of state-of-the-art elliptic curve methods, resulting in a simple but very powerful tool-kit for building secure applications.
 
@@ -46,11 +46,11 @@ secret <- random(8)
 print(secret)
 ```
 
-Implementation is platform specific, see the [docs](https://download.libsodium.org/doc/generating_random_data/index.html) for  details.
+Implementation is platform specific, see the [docs](https://doc.libsodium.org/generating_random_data/index.html) for  details.
 
 ### Hash functions
 
-Sodium has several hash functions including `hash()`, `shorthash()`, `sha256()`, `sha512` and `scrypt()`. The generic `hash()` is usually recommended. It uses [blake2b](https://download.libsodium.org/doc/hashing/generic_hashing.html) with a configurable size between 16 bytes (128bit) and 64 bytes (512bit).
+Sodium has several hash functions including `hash()`, `shorthash()`, `sha256()`, `sha512` and `scrypt()`. The generic `hash()` is usually recommended. It uses [blake2b](https://doc.libsodium.org/hashing/generic_hashing.html) with a configurable size between 16 bytes (128bit) and 64 bytes (512bit).
 
 ```{r}
 # Generate keys from passphrase
@@ -60,7 +60,7 @@ hash(passphrase, size = 16)
 hash(passphrase, size = 64)
 ```
 
-The `shorthash()` function is a special 8 byte (64 bit) hash based on [SipHash-2-4](https://download.libsodium.org/doc/hashing/short-input_hashing.html). The output of this function is only 64 bits (8 bytes). It is useful for in e.g. Hash tables, but it should not be considered collision-resistant.
+The `shorthash()` function is a special 8 byte (64 bit) hash based on [SipHash-2-4](https://doc.libsodium.org/hashing/short-input_hashing.html). The output of this function is only 64 bits (8 bytes). It is useful for in e.g. Hash tables, but it should not be considered collision-resistant.
 
 
 ### Secret key encryption
