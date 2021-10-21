@@ -1,3 +1,6 @@
+1.2.0
+ - Fix crash with bin2hex() for very large input vectors
+
 1.1
  - Fix autobrew for OSX Mavericks
 
