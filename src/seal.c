@@ -4,8 +4,8 @@
 SEXP R_seal_box(SEXP msg, SEXP pubkey){
   if(LENGTH(pubkey) != crypto_box_PUBLICKEYBYTES)
     Rf_error("Invalid pubkey, must be exactly %d bytes", crypto_box_PUBLICKEYBYTES);
-  int mlen = LENGTH(msg);
-  int clen = mlen + crypto_box_SEALBYTES;
+  R_xlen_t mlen = XLENGTH(msg);
+  R_xlen_t clen = mlen + crypto_box_SEALBYTES;
   SEXP res = allocVector(RAWSXP, clen);
   if(crypto_box_seal(RAW(res), RAW(msg), mlen, RAW(pubkey)))
     Rf_error("Failed to encrypt");
@@ -15,8 +15,8 @@ SEXP R_seal_box(SEXP msg, SEXP pubkey){
 SEXP R_seal_open(SEXP cipher, SEXP key){
   if(LENGTH(key) != crypto_box_SECRETKEYBYTES)
     Rf_error("Invalid key, must be exactly %d bytes", crypto_box_SECRETKEYBYTES);
-  int clen = LENGTH(cipher);
-  int mlen = clen - crypto_box_SEALBYTES;
+  R_xlen_t clen = XLENGTH(cipher);
+  R_xlen_t mlen = clen - crypto_box_SEALBYTES;
   SEXP res = allocVector(RAWSXP, mlen);
   unsigned char pk[crypto_box_PUBLICKEYBYTES];
   crypto_scalarmult_base(pk, RAW(key));

@@ -5,7 +5,7 @@
 
 SEXP R_sha256(SEXP buf){
   SEXP res = allocVector(RAWSXP, crypto_hash_sha256_BYTES);
-  if(crypto_hash_sha256(RAW(res), RAW(buf), LENGTH(buf)))
+  if(crypto_hash_sha256(RAW(res), RAW(buf), XLENGTH(buf)))
     Rf_error("Failed to hash");
   return res;
 }
@@ -14,7 +14,7 @@ SEXP R_auth_sha256(SEXP buf, SEXP key){
   if(LENGTH(key) != crypto_auth_hmacsha256_BYTES)
     Rf_error("Invalid key, must be exactly %d bytes", crypto_auth_hmacsha256_BYTES);
   SEXP res = allocVector(RAWSXP, crypto_hash_sha256_BYTES);
-  if(crypto_auth_hmacsha256(RAW(res), RAW(buf), LENGTH(buf), RAW(key)))
+  if(crypto_auth_hmacsha256(RAW(res), RAW(buf), XLENGTH(buf), RAW(key)))
     Rf_error("Failed to hash");
   return res;
 }
@@ -23,7 +23,7 @@ SEXP R_auth_sha256(SEXP buf, SEXP key){
 
 SEXP R_sha512(SEXP buf){
   SEXP res = allocVector(RAWSXP, crypto_hash_sha512_BYTES);
-  if(crypto_hash_sha512(RAW(res), RAW(buf), LENGTH(buf)))
+  if(crypto_hash_sha512(RAW(res), RAW(buf), XLENGTH(buf)))
     Rf_error("Failed to hash");
   return res;
 }
@@ -32,7 +32,7 @@ SEXP R_auth_sha512(SEXP buf, SEXP key){
   if(LENGTH(key) != crypto_auth_hmacsha512_BYTES)
     Rf_error("Invalid key, must be exactly %d bytes", crypto_auth_hmacsha512_BYTES);
   SEXP res = allocVector(RAWSXP, crypto_hash_sha512_BYTES);
-  if(crypto_auth_hmacsha512(RAW(res), RAW(buf), LENGTH(buf), RAW(key)))
+  if(crypto_auth_hmacsha512(RAW(res), RAW(buf), XLENGTH(buf), RAW(key)))
     Rf_error("Failed to hash");
   return res;
 }
@@ -54,7 +54,7 @@ SEXP R_crypto_generichash(SEXP buf, SEXP size, SEXP key){
   }
 
   SEXP res = allocVector(RAWSXP, outlen);
-  if(crypto_generichash(RAW(res), outlen, RAW(buf), LENGTH(buf), keyval, keysize))
+  if(crypto_generichash(RAW(res), outlen, RAW(buf), XLENGTH(buf), keyval, keysize))
     Rf_error("Failed to hash");
   return res;
 }
@@ -66,7 +66,7 @@ SEXP R_crypto_shorthash(SEXP buf, SEXP key){
     Rf_error("Invalid key, must be exactly %d bytes", crypto_shorthash_KEYBYTES);
 
   SEXP res = allocVector(RAWSXP, crypto_shorthash_BYTES);
-  if(crypto_shorthash(RAW(res), RAW(buf), LENGTH(buf), RAW(key)))
+  if(crypto_shorthash(RAW(res), RAW(buf), XLENGTH(buf), RAW(key)))
     Rf_error("Failed to hash");
   return res;
 }
@@ -78,7 +78,7 @@ SEXP R_pwhash(SEXP buf, SEXP salt, SEXP size){
   if(LENGTH(salt) != crypto_pwhash_scryptsalsa208sha256_SALTBYTES)
     Rf_error("Invalid salt, must be exactly %d bytes", crypto_pwhash_scryptsalsa208sha256_SALTBYTES);
   SEXP res = allocVector(RAWSXP, outlen);
-  if(crypto_pwhash_scryptsalsa208sha256(RAW(res), outlen, (char*) RAW(buf), LENGTH(buf), RAW(salt),
+  if(crypto_pwhash_scryptsalsa208sha256(RAW(res), outlen, (char*) RAW(buf), XLENGTH(buf), RAW(salt),
   crypto_pwhash_scryptsalsa208sha256_OPSLIMIT_INTERACTIVE, crypto_pwhash_scryptsalsa208sha256_MEMLIMIT_INTERACTIVE))
     Rf_error("pwhash failed");
   return res;
@@ -92,7 +92,7 @@ SEXP R_pwhash_argon2(SEXP buf, SEXP salt, SEXP size){
   if(LENGTH(salt) != crypto_pwhash_SALTBYTES)
     Rf_error("Invalid salt, must be exactly %d bytes", crypto_pwhash_SALTBYTES);
   SEXP res = allocVector(RAWSXP, outlen);
-  if(crypto_pwhash(RAW(res), outlen, (char*) RAW(buf), LENGTH(buf), RAW(salt),
+  if(crypto_pwhash(RAW(res), outlen, (char*) RAW(buf), XLENGTH(buf), RAW(salt),
                    crypto_pwhash_OPSLIMIT_INTERACTIVE,
                    crypto_pwhash_MEMLIMIT_INTERACTIVE,
                    crypto_pwhash_ALG_ARGON2I13))

@@ -24,7 +24,7 @@ SEXP R_sig_sign(SEXP msg, SEXP key){
   if(LENGTH(key) != crypto_sign_SECRETKEYBYTES)
     Rf_error("Invalid key: must be exactly %d bytes", crypto_sign_SECRETKEYBYTES);
   SEXP res = allocVector(RAWSXP, crypto_sign_BYTES);
-  if(crypto_sign_detached(RAW(res), NULL, RAW(msg), LENGTH(msg), RAW(key)))
+  if(crypto_sign_detached(RAW(res), NULL, RAW(msg), XLENGTH(msg), RAW(key)))
     Rf_error("Failed to create signature");
   return res;
 }
@@ -34,7 +34,7 @@ SEXP R_sig_verify(SEXP msg, SEXP sig, SEXP pubkey){
     Rf_error("Invalid pubkey: must be exactly %d bytes", crypto_sign_PUBLICKEYBYTES);
   if(LENGTH(sig) != crypto_sign_BYTES)
     Rf_error("Invalid sig: must be exactly %d bytes", crypto_sign_BYTES);
-  if(crypto_sign_verify_detached(RAW(sig), RAW(msg), LENGTH(msg), RAW(pubkey)))
+  if(crypto_sign_verify_detached(RAW(sig), RAW(msg), XLENGTH(msg), RAW(pubkey)))
     Rf_error("Signature verification failed");
   return ScalarLogical(TRUE);
 }
