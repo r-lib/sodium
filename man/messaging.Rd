@@ -65,5 +65,5 @@ out <- auth_decrypt(ciphertext, bob_key, alice_pubkey)
 stopifnot(identical(out, msg))
 }
 \references{
-\url{http://doc.libsodium.org/public-key_cryptography/authenticated_encryption.html}
+\url{https://libsodium.gitbook.io/doc/public-key_cryptography/authenticated_encryption}
 }

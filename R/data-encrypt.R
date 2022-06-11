@@ -29,7 +29,7 @@
 #' @param key shared secret key used for both encryption and decryption
 #' @param bin encrypted ciphertext
 #' @param nonce non-secret unique data to randomize the cipher
-#' @references \url{https://download.libsodium.org/doc/secret-key_cryptography/authenticated_encryption.html}
+#' @references \url{https://libsodium.gitbook.io/doc/public-key_cryptography/authenticated_encryption}
 #' @examples # 256-bit key
 #' key <- sha256(charToRaw("This is a secret passphrase"))
 #' msg <- serialize(iris, NULL)

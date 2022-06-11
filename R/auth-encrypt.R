@@ -20,7 +20,7 @@
 #' @useDynLib sodium R_secure_send
 #' @rdname messaging
 #' @name Authenticated encryption
-#' @references \url{http://doc.libsodium.org/public-key_cryptography/authenticated_encryption.html}
+#' @references \url{https://libsodium.gitbook.io/doc/public-key_cryptography/authenticated_encryption}
 #' @examples # Bob's keypair:
 #' bob_key <- keygen()
 #' bob_pubkey <- pubkey(bob_key)

@@ -2,7 +2,6 @@
 
 > A Modern and Easy-to-Use Crypto Library
 
-[![Build Status](https://travis-ci.org/jeroen/sodium.svg?branch=master)](https://travis-ci.org/jeroen/sodium)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/sodium)](https://cran.r-project.org/package=sodium)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sodium)](https://cran.r-project.org/package=sodium)
 
