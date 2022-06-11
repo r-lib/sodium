@@ -15,7 +15,7 @@ knitr::opts_chunk$set(comment = "")
 library(sodium)
 ```
 
-The sodium R package provides bindings to [libsodium](https://doc.libsodium.org/): a modern, easy-to-use software library for encryption, decryption, signatures, password hashing and more. 
+The sodium R package provides bindings to [libsodium](https://libsodium.gitbook.io/): a modern, easy-to-use software library for encryption, decryption, signatures, password hashing and more. 
 
 The goal of Sodium is to provide the core operations needed to build higher-level cryptographic tools. It is not intended for implementing standardized protocols such as TLS, SSH or GPG. Sodium only supports a limited set of state-of-the-art elliptic curve methods, resulting in a simple but very powerful tool-kit for building secure applications.
 
@@ -46,7 +46,7 @@ secret <- random(8)
 print(secret)
 ```
 
-Implementation is platform specific, see the [docs](https://doc.libsodium.org/generating_random_data/index.html) for  details.
+Implementation is platform specific, see the [docs](https://libsodium.gitbook.io/doc/generating_random_data) for  details.
 
 ### Hash functions
 

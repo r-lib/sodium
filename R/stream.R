@@ -28,7 +28,7 @@
 #' @param size length of cipher stream in bytes
 #' @param key secret key used by the cipher
 #' @param nonce non-secret unique data to randomize the cipher
-#' @references \url{https://download.libsodium.org/doc/advanced/xsalsa20.html}
+#' @references \url{https://libsodium.gitbook.io/doc/advanced/stream_ciphers/xsalsa20}
 #' @examples # Very basic encryption
 #' myfile <- file.path(R.home(), "COPYING")
 #' message <- readBin(myfile, raw(), file.info(myfile)$size)

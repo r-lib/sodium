@@ -3,7 +3,7 @@
 > A Modern and Easy-to-Use Crypto Library
 
 [![Build Status](https://travis-ci.org/jeroen/sodium.svg?branch=master)](https://travis-ci.org/jeroen/sodium)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/sodium)](http://cran.r-project.org/package=sodium)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/sodium)](https://cran.r-project.org/package=sodium)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sodium)](https://cran.r-project.org/package=sodium)
 
 Bindings to libsodium: a modern, easy-to-use software library for
@@ -55,13 +55,13 @@ Installation from source on Linux or OSX requires [`libsodium`](https://doc.libs
 sudo apt-get install -y libsodium-dev
 ```
 
-On __Fedora__ we need [libsodium-devel](https://apps.fedoraproject.org/packages/libsodium-devel):
+On __Fedora__ we need [libsodium-devel](https://src.fedoraproject.org/rpms/libsodium):
 
 ```
 sudo yum install libsodium-devel
 ````
 
-On __CentOS / RHEL__ we install [libsodium-devel](https://apps.fedoraproject.org/packages/libsodium-devel) via EPEL:
+On __CentOS / RHEL__ we install [libsodium-devel](https://src.fedoraproject.org/rpms/libsodium) via EPEL:
 
 ```
 sudo yum install epel-release
@@ -73,12 +73,3 @@ On __OS-X__ use [libsodium](https://github.com/Homebrew/homebrew-core/blob/maste
 ```
 brew install libsodium
 ```
-
-On __Solaris 10__ we can have [libsodium_dev](https://www.opencsw.org/packages/CSWlibsodium-dev/) from [OpenCSW](https://www.opencsw.org/):
-```
-pkgadd -d http://get.opencsw.org/now
-/opt/csw/bin/pkgutil -U
-/opt/csw/bin/pkgutil -y -i libsodium_dev 
-/usr/sbin/pkgchk -L CSWlibsodium-dev # list files
-```
-

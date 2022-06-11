@@ -10,12 +10,12 @@ Description: Bindings to 'libsodium' <https://doc.libsodium.org/>: a modern,
     function by Daniel Bernstein, which has become very popular after it was 
     discovered that the NSA had backdoored Dual EC DRBG.
 License: MIT + file LICENSE
-URL: https://docs.ropensci.org/sodium
+URL: https://docs.ropensci.org/sodium/
     https://github.com/r-lib/sodium
-BugReports: https://github.com/jeroen/sodium/issues
+BugReports: https://github.com/r-lib/sodium/issues
 SystemRequirements: libsodium (>= 1.0.3)
 VignetteBuilder: knitr
 Suggests:
     knitr,
     rmarkdown
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
