@@ -2,8 +2,8 @@ Package: sodium
 Type: Package
 Title: A Modern and Easy-to-Use Crypto Library
 Version: 1.2.1
-Author: Jeroen Ooms
-Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
+Authors@R: person("Jeroen", "Ooms", role = c("aut", "cre"), email = "jeroen@berkeley.edu",
+    comment = c(ORCID = "0000-0002-4035-0289"))
 Description: Bindings to 'libsodium' <https://doc.libsodium.org/>: a modern, 
     easy-to-use software library for encryption, decryption, signatures, password
     hashing and more. Sodium uses curve25519, a state-of-the-art Diffie-Hellman 
