@@ -1,8 +1,18 @@
-# Build against mingw-w64 build of libsodium
-if(!file.exists("../windows/sodium-1.0.12/include/sodium.h")){
-  if(getRversion() < "3.3.0") setInternet2()
-  download.file("https://github.com/rwinlib/sodium/archive/v1.0.12.zip", "lib.zip", quiet = TRUE)
+if(!file.exists("../windows/sodium/include/sodium.h")){
+  unlink("../windows", recursive = TRUE)
+  url <- if(grepl("aarch", R.version$platform)){
+    "https://github.com/r-windows/bundles/releases/download/libsodium-1.0.18/libsodium-1.0.18-clang-aarch64.tar.xz"
+  } else if(grepl("clang", Sys.getenv('R_COMPILED_BY'))){
+    "https://github.com/r-windows/bundles/releases/download/libsodium-1.0.18/libsodium-1.0.18-clang-x86_64.tar.xz"
+  }  else if(getRversion() >= "4.2") {
+    "https://github.com/r-windows/bundles/releases/download/libsodium-1.0.18/libsodium-1.0.18-ucrt-x86_64.tar.xz"
+  } else {
+    "https://github.com/rwinlib/sodium/archive/v1.0.12.tar.gz"
+  }
+  download.file(url, basename(url), quiet = TRUE)
   dir.create("../windows", showWarnings = FALSE)
-  unzip("lib.zip", exdir = "../windows")
-  unlink("lib.zip")
+  untar(basename(url), exdir = "../windows", tar = 'internal')
+  unlink(basename(url))
+  setwd("../windows")
+  file.rename(list.files(), 'sodium')
 }

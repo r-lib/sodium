@@ -1,5 +1,10 @@
-PKG_CPPFLAGS= -I../windows/sodium-1.0.12/include
-PKG_LIBS= -L../windows/sodium-1.0.12/lib${R_ARCH} -lsodium
+RWINLIB = ../windows/sodium
+PKG_CPPFLAGS = -I$(RWINLIB)/include
+
+PKG_LIBS = \
+	-L$(RWINLIB)/lib$(R_ARCH) \
+	-L${RWINLIB}/lib \
+	-lsodium
 
 all: clean winlibs
 
