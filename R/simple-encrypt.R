@@ -14,7 +14,7 @@
 #' @rdname simple
 #' @name Simple encryption
 #' @useDynLib sodium R_seal_box
-#' @references \url{http://doc.libsodium.org/public-key_cryptography/sealed_boxes.html}
+#' @references \url{https://doc.libsodium.org/public-key_cryptography/sealed_boxes.html}
 #' @param msg message to be encrypted
 #' @param key private key of the receiver
 #' @param pubkey public key of the receiver

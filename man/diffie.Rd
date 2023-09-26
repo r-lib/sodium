@@ -55,5 +55,5 @@ bob_secret <- diffie_hellman(bob_key, alice_pubkey)
 stopifnot(identical(alice_secret, bob_secret))
 }
 \references{
-\url{http://doc.libsodium.org/advanced/scalar_multiplication.html}
+\url{https://doc.libsodium.org/advanced/scalar_multiplication.html}
 }

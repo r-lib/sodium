@@ -45,5 +45,5 @@ out <- simple_decrypt(ciphertext, key)
 stopifnot(identical(out, msg))
 }
 \references{
-\url{http://doc.libsodium.org/public-key_cryptography/sealed_boxes.html}
+\url{https://doc.libsodium.org/public-key_cryptography/sealed_boxes.html}
 }

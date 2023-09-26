@@ -60,5 +60,5 @@ sig <- sig_sign(msg, key)
 sig_verify(msg, sig, pubkey)
 }
 \references{
-\url{http://doc.libsodium.org/public-key_cryptography/public-key_signatures.html}
+\url{https://doc.libsodium.org/public-key_cryptography/public-key_signatures.html}
 }

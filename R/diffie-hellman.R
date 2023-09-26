@@ -27,7 +27,7 @@
 #' @name Diffie-Hellman
 #' @aliases diffie
 #' @useDynLib sodium R_diffie_hellman
-#' @references \url{http://doc.libsodium.org/advanced/scalar_multiplication.html}
+#' @references \url{https://doc.libsodium.org/advanced/scalar_multiplication.html}
 #' @param key your private key
 #' @param pubkey other person's public key
 #' @return Returns a shared secret key which can be used in e.g. \link{data_encrypt}.

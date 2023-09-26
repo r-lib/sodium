@@ -37,5 +37,5 @@ hash <- password_store(password)
 stopifnot(password_verify(hash, password))
 }
 \references{
-\url{http://doc.libsodium.org/password_hashing/}
+\url{https://doc.libsodium.org/password_hashing/}
 }
