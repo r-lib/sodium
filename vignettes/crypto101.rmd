@@ -168,7 +168,7 @@ out <- simple_decrypt(ciphertext, key)
 identical(msg, out)
 ```
 
-How does this work? Public key encryption makes use of [Diffie-Hellman](http://mathworld.wolfram.com/Diffie-HellmanProtocol.html) (D-H): a method which allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. In the most simple case, both parties generate a temporary keypair and exchange their public key over the insecure channel. Then both parties use the D-H function to calculcate the (same) shared secret key by combining their own private key with the other person's public key:
+How does this work? Public key encryption makes use of Diffie-Hellman (D-H): a method which allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. In the most simple case, both parties generate a temporary keypair and exchange their public key over the insecure channel. Then both parties use the D-H function to calculcate the (same) shared secret key by combining their own private key with the other person's public key:
 
 ```{r}
 # Bob generates keypair
@@ -187,4 +187,4 @@ identical(alice_secret, bob_secret)
 
 Once the shared secret has been established, both parties can discard their temporary public/private key and use the shared secret to start encrypting communications with symmetric encryption as discussed earlier. Because the shared secret cannot be calculated using only the public keys, the process is safe from eavesdroppers.
 
-The classical [Diffie-Hellman method](http://mathworld.wolfram.com/Diffie-HellmanProtocol.html) is based on the discrete logarithm problem with large prime numbers. Sodium uses [curve25519](http://cr.yp.to/ecdh/curve25519-20060209.pdf), a state-of-the-art D-H function by Daniel Bernsteinan designed for use with the elliptic curve Diffie–Hellman (ECDH) key agreement scheme.
+The classical Diffie-Hellman method is based on the discrete logarithm problem with large prime numbers. Sodium uses [curve25519](https://cr.yp.to/ecdh/curve25519-20060209.pdf), a state-of-the-art D-H function by Daniel Bernsteinan designed for use with the elliptic curve Diffie–Hellman (ECDH) key agreement scheme.
