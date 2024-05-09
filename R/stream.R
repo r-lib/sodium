@@ -48,12 +48,23 @@
 #' # Other stream ciphers
 #' stream <- salsa20(10000, key, nonce8)
 #' stream <- xsalsa20(10000, key, random(24))
+#' stream <- xchacha20(10000, key, random(24))
 #'
 chacha20 <- function(size, key, nonce){
   stopifnot(is.numeric(size))
   stopifnot(is.raw(key))
   stopifnot(is.raw(nonce))
   .Call(R_stream_chacha20, size, key, nonce)
+}
+
+#' @export
+#' @useDynLib sodium R_stream_xchacha20
+#' @rdname stream
+xchacha20 <- function(size, key, nonce){
+  stopifnot(is.numeric(size))
+  stopifnot(is.raw(key))
+  stopifnot(is.raw(nonce))
+  .Call(R_stream_xchacha20, size, key, nonce)
 }
 
 #' @export

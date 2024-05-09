@@ -4,11 +4,14 @@
 \alias{Stream ciphers}
 \alias{chacha20}
 \alias{stream}
+\alias{xchacha20}
 \alias{salsa20}
 \alias{xsalsa20}
 \title{Stream Ciphers}
 \usage{
 chacha20(size, key, nonce)
+
+xchacha20(size, key, nonce)
 
 salsa20(size, key, nonce)
 
@@ -63,6 +66,7 @@ stopifnot(identical(out, message))
 # Other stream ciphers
 stream <- salsa20(10000, key, nonce8)
 stream <- xsalsa20(10000, key, random(24))
+stream <- xchacha20(10000, key, random(24))
 
 }
 \references{
