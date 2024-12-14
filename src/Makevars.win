@@ -1,14 +1,21 @@
+PKG_CONFIG ?= $(BINPREF)pkg-config
+PKG_CONFIG_NAME = libsodium
+PKG_LIBS := $(shell $(PKG_CONFIG) --libs $(PKG_CONFIG_NAME))
+
+ifneq ($(PKG_LIBS),)
+$(info using $(PKG_CONFIG_NAME) from Rtools)
+PKG_CPPFLAGS := $(shell $(PKG_CONFIG) --cflags $(PKG_CONFIG_NAME))
+else
 RWINLIB = ../windows/sodium
 PKG_CPPFLAGS = -I$(RWINLIB)/include
+PKG_LIBS = -L$(RWINLIB)/lib$(R_ARCH) -L${RWINLIB}/lib -lsodium
+endif
 
-PKG_LIBS = \
-	-L$(RWINLIB)/lib$(R_ARCH) \
-	-L${RWINLIB}/lib \
-	-lsodium
+all: $(SHLIB)
 
-all: clean winlibs
+$(OBJECTS): $(RWINLIB)
 
-winlibs:
+$(RWINLIB):
 	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R"
 
 clean:
