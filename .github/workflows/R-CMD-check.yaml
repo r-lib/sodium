@@ -51,3 +51,5 @@ jobs:
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
+        env:
+          PKG_BUILD_IGNORE_PKG_CONFIG_PATH: true
