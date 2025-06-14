@@ -32,7 +32,7 @@ Now that we got this is out of the way, let's start hacking :)
 
 ### The XOR operator 
 
-The bitwise [XOR operator](https://en.wikipedia.org/wiki/Exclusive_or#Truth_table) outputs `true` only when both inputs differ (one is `true`, the other is `false`). It is sometimes called an *invertor* because the output of a bit in `x` gets inverted if and only if the corresponding bit in `y` is true:
+The bitwise [XOR operator](https://en.wikipedia.org/wiki/Exclusive_or#Truth_table) outputs `true` only when both inputs differ (one is `true`, the other is `false`). It is sometimes called an *inverter* because the output of a bit in `x` gets inverted if and only if the corresponding bit in `y` is true:
 
 ```{r}
 # XOR two (8bit) bytes 'x' and 'y'
@@ -60,7 +60,7 @@ rawToChar(ciphertext)
 rawToChar(base::xor(ciphertext, one_time_pad))
 ```
 
-This method is perfectly secure and forms the basis for most cryptograhpic methods. However the challenge is generating and communicating unique pseudo-random `y` data every time we want to encrypt something. One-time-pads as in the example are not very practical for large messages. Also we should never re-use a one-time-pad `y` for encrypting multiple messages, as this  compromises the secrecy. 
+This method is perfectly secure and forms the basis for most cryptographic methods. However the challenge is generating and communicating unique pseudo-random `y` data every time we want to encrypt something. One-time-pads as in the example are not very practical for large messages. Also we should never re-use a one-time-pad `y` for encrypting multiple messages, as this  compromises the secrecy. 
 
 ### Stream ciphers
 
@@ -73,7 +73,7 @@ nonce <- random(8)
 chacha20(size = 20, key, nonce)
 ```
 
-Each stream requires a `key` and a `nonce`. The key forms the shared secret and should only be known to trusted parties. The `nonce` is not secret and is stored or sent along with the ciphertext. The purpose of the `nonce` is to make a random stream unique to protect gainst re-use attacks. This way you can re-use a your key to encrypt multiple messages, as long as you never re-use the same nonce.
+Each stream requires a `key` and a `nonce`. The key forms the shared secret and should only be known to trusted parties. The `nonce` is not secret and is stored or sent along with the ciphertext. The purpose of the `nonce` is to make a random stream unique to protect against re-use attacks. This way you can re-use a your key to encrypt multiple messages, as long as you never re-use the same nonce.
 
 ```{r}
 salsa20(size = 20, key, nonce)
@@ -122,7 +122,7 @@ message <- readBin(myfile, raw(), file.info(myfile)$size)
 passwd <- charToRaw("My secret passphrase")
 ```
 
-A hash function converts the password to a key of suitable size for the stream cipher, which we use to generate a psuedo random stream of equal length to the message:
+A hash function converts the password to a key of suitable size for the stream cipher, which we use to generate a pseudo random stream of equal length to the message:
 
 ```{r}
 # Basic secret key encryption
@@ -150,7 +150,7 @@ Symmetric encryption can be used for e.g. encrypting local data. However because
 
 ### Public-key encryption and Diffie-Hellman
 
-Rather than using a single secret-key, assymetric (public key) encryption requires a *keypair*, consisting of a *public key* for encryption and a *private-key* for decryption. Data that is encrypted using a given public key can only be decrypted using the corresponding private key. 
+Rather than using a single secret-key, asymmetric (public key) encryption requires a *keypair*, consisting of a *public key* for encryption and a *private-key* for decryption. Data that is encrypted using a given public key can only be decrypted using the corresponding private key. 
 
 The public key is not confidential and can be shared on e.g. a website or keyserver. This allows anyone to send somebody a secure message by encrypting it with the receivers public key. The encrypted message will only be readable by the owner of the corresponding private key.
 
@@ -168,7 +168,7 @@ out <- simple_decrypt(ciphertext, key)
 identical(msg, out)
 ```
 
-How does this work? Public key encryption makes use of Diffie-Hellman (D-H): a method which allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. In the most simple case, both parties generate a temporary keypair and exchange their public key over the insecure channel. Then both parties use the D-H function to calculcate the (same) shared secret key by combining their own private key with the other person's public key:
+How does this work? Public key encryption makes use of Diffie-Hellman (D-H): a method which allows two parties that have no prior knowledge of each other to jointly establish a shared secret key over an insecure channel. In the most simple case, both parties generate a temporary keypair and exchange their public key over the insecure channel. Then both parties use the D-H function to calculate the (same) shared secret key by combining their own private key with the other person's public key:
 
 ```{r}
 # Bob generates keypair
@@ -187,4 +187,4 @@ identical(alice_secret, bob_secret)
 
 Once the shared secret has been established, both parties can discard their temporary public/private key and use the shared secret to start encrypting communications with symmetric encryption as discussed earlier. Because the shared secret cannot be calculated using only the public keys, the process is safe from eavesdroppers.
 
-The classical Diffie-Hellman method is based on the discrete logarithm problem with large prime numbers. Sodium uses [curve25519](https://cr.yp.to/ecdh/curve25519-20060209.pdf), a state-of-the-art D-H function by Daniel Bernsteinan designed for use with the elliptic curve Diffie–Hellman (ECDH) key agreement scheme.
+The classical Diffie-Hellman method is based on the discrete logarithm problem with large prime numbers. Sodium uses [curve25519](https://cr.yp.to/ecdh/curve25519-20060209.pdf), a state-of-the-art D-H function by Daniel J. Bernstein designed for use with the elliptic curve Diffie–Hellman (ECDH) key agreement scheme.
