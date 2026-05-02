@@ -35,7 +35,7 @@ use \link{data_encrypt}. For secure communication use \link{simple_encrypt} or
 Random streams form the basis for most cryptographic methods. Based a shared secret
 (the key) we generate a predictable random data stream of equal length as the message
 we need to encrypt. Then we \link{xor} the message data with this random stream,
-which effectively inverts each byte in the message with probabiliy 0.5. The message
+which effectively inverts each byte in the message with probability 0.5. The message
 can be decrypted by re-generating exactly the same random data stream and \link{xor}'ing
 it back. See the examples.
 
@@ -43,7 +43,7 @@ Each stream generator requires a \code{key} and a \code{nonce}. Both are require
 the same stream for decryption. The key forms the shared secret and should only known to
 the trusted parties. The \code{nonce} is not secret and should be stored or sent along
 with the ciphertext. The purpose of the \code{nonce} is to make a random stream unique
-to protect gainst re-use attacks. This way you can re-use a your key to encrypt multiple
+to protect against re-use attacks. This way you can re-use a your key to encrypt multiple
 messages, as long as you never re-use the same nonce.
 }
 \examples{

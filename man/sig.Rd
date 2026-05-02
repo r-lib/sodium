@@ -46,7 +46,7 @@ process.
 For confidential data, use authenticated encryption (\link{auth_encrypt})
 which allows for sending signed and encrypted messages in a single method.
 
-Currently sodium requires a different type of key pairfor signatures  (ed25519)
+Currently sodium requires a different type of key pair for signatures (ed25519)
 than for encryption (curve25519).
 }
 \examples{

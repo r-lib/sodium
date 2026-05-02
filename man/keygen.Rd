@@ -23,7 +23,7 @@ public key.
 Asymmetric methods rely on public-private keypairs. The private keys are secret and
 should never be shared with anyone. The public key on the other hand is not confidential
 and should be shared with the other parties. Public keys are typically published on the
-users's website or posted in public directories or keyservers.
+users' website or posted in public directories or keyservers.
 
 The two main applications for public key cryptography are encryption and authentication.
 
